@@ -1,0 +1,33 @@
+name: lib_dependencies
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # network
+  dio: ^4.0.6
+  connectivity_plus: ^2.3.6+1
+
+  # injection
+  flutter_modular: ^5.0.3
+
+  # state manager
+  flutter_bloc: ^8.1.1
+
+  # others
+  equatable: ^2.0.5
+  dartz: ^0.10.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
