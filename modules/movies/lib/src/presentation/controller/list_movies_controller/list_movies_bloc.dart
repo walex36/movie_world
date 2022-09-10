@@ -7,16 +7,13 @@ part 'list_movies_event.dart';
 part 'list_movies_state.dart';
 
 class ListMoviesBloc extends Bloc<ListMoviesEvent, ListMoviesState> {
-  final GetMovieUsecase _getMovieUsecase;
   final GetMoviesPopularUsecase _getMoviesPopularUsecase;
   final DioConfig _dioConfig;
 
   ListMoviesBloc({
-    required GetMovieUsecase getMovieUsecase,
     required GetMoviesPopularUsecase getMoviesPopularUsecase,
     required DioConfig dioConfig,
-  })  : _getMovieUsecase = getMovieUsecase,
-        _getMoviesPopularUsecase = getMoviesPopularUsecase,
+  })  : _getMoviesPopularUsecase = getMoviesPopularUsecase,
         _dioConfig = dioConfig,
         super(const ListMoviesState(
           movieList: [],
