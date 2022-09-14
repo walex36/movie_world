@@ -1,20 +1,25 @@
-name: lib_endpoint
+name: lib_blur_hash
 description: A new Flutter package project.
 version: 0.0.1
-
 publish_to: none
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: '>=2.18.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  lib_core:
+    path: ../lib_core
+  flutter_cache_manager: ^3.3.0
+  image: ^3.2.0
+  blurhash_dart: ^1.1.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.0
 
 flutter:

@@ -4,14 +4,19 @@ part of 'movies_details_bloc.dart';
 abstract class MoviesDetailsEvent extends Equatable {}
 
 class InitMoviesDetails extends MoviesDetailsEvent {
-  final int idMovie;
+  final Movie movieCache;
 
   InitMoviesDetails({
-    required this.idMovie,
+    required this.movieCache,
   });
 
   @override
   List<Object?> get props => [
-        idMovie,
+        movieCache,
       ];
+}
+
+class ResetBlurMovieDetails extends MoviesDetailsEvent {
+  @override
+  List<Object?> get props => [];
 }

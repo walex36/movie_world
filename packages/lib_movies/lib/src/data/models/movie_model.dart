@@ -109,7 +109,9 @@ class MovieModel extends Movie {
       originalTitle: map['original_title'] ?? '',
       overview: map['overview'] ?? '',
       popularity: map['popularity'] ?? 0.0,
-      posterPath: map['poster_path'] ?? '',
+      posterPath: map['poster_path'] != null
+          ? 'https://image.tmdb.org/t/p/w500${map['poster_path']}'
+          : '',
       productionCompanies: map['production_companies'] != null
           ? List<CompanyModel>.from(
               map['production_companies'].map<CompanyModel>(

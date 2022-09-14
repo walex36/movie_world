@@ -20,6 +20,8 @@ dependencies:
     path: packages/lib_endpoint
   lib_movies:
     path: packages/lib_movies
+  lib_blur_hash:
+    path: packages/lib_blur_hash
 
   movies:
     path: modules/movies

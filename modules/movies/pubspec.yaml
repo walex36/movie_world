@@ -16,6 +16,8 @@ dependencies:
     path: ../../packages/lib_dependencies
   lib_movies:
     path: ../../packages/lib_movies
+  lib_blur_hash:
+    path: ../../packages/lib_blur_hash
 
 dev_dependencies:
   flutter_test:

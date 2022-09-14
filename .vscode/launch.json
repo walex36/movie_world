@@ -1,0 +1,145 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "movie_world",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "movie_world (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "movie_world (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "movies",
+            "cwd": "modules\\movies",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "movies (profile mode)",
+            "cwd": "modules\\movies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "movies (release mode)",
+            "cwd": "modules\\movies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "lib_blur_hash",
+            "cwd": "packages\\lib_blur_hash",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lib_blur_hash (profile mode)",
+            "cwd": "packages\\lib_blur_hash",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "lib_blur_hash (release mode)",
+            "cwd": "packages\\lib_blur_hash",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "lib_core",
+            "cwd": "packages\\lib_core",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lib_core (profile mode)",
+            "cwd": "packages\\lib_core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "lib_core (release mode)",
+            "cwd": "packages\\lib_core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "lib_dependencies",
+            "cwd": "packages\\lib_dependencies",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lib_dependencies (profile mode)",
+            "cwd": "packages\\lib_dependencies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "lib_dependencies (release mode)",
+            "cwd": "packages\\lib_dependencies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "lib_endpoint",
+            "cwd": "packages\\lib_endpoint",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lib_endpoint (profile mode)",
+            "cwd": "packages\\lib_endpoint",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "lib_endpoint (release mode)",
+            "cwd": "packages\\lib_endpoint",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "lib_movies",
+            "cwd": "packages\\lib_movies",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lib_movies (profile mode)",
+            "cwd": "packages\\lib_movies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "lib_movies (release mode)",
+            "cwd": "packages\\lib_movies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

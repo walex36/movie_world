@@ -22,3 +22,9 @@ class InitializersFailure extends IFailure {
       {String message = 'Não foi possivel inicializar modulos'})
       : super(message);
 }
+
+class HashFailure extends IFailure {
+  const HashFailure({
+    String message = 'Não foi possivel converter image',
+  }) : super(message);
+}

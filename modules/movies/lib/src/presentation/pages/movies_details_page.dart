@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
+import 'package:lib_movies/lib_movies.dart';
 import 'package:movies/src/presentation/controller/movies_details_controller/movies_details_bloc.dart';
 import 'package:movies/src/presentation/widgets/movies_details_state/movies_details_success.dart';
 
 class MoviesDetailsPage extends StatefulWidget {
-  final int idMovie;
-  const MoviesDetailsPage({super.key, required this.idMovie});
+  final Movie movie;
+  const MoviesDetailsPage({super.key, required this.movie});
 
   @override
   State<MoviesDetailsPage> createState() => _MoviesDetailsPageState();
@@ -21,7 +20,12 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
   @override
   void initState() {
     super.initState();
-    bloc.add(InitMoviesDetails(idMovie: widget.idMovie));
+    bloc.add(InitMoviesDetails(movieCache: widget.movie));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -51,9 +55,10 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
             case ControlStatus.initial:
             case ControlStatus.empty:
             case ControlStatus.loading:
-              return const Center(child: CircularProgressIndicator());
             case ControlStatus.success:
-              return const MoviesDetailsSuccess();
+              return MoviesDetailsSuccess(
+                movieCache: widget.movie,
+              );
             case ControlStatus.failure:
             default:
               return const Center(child: Text('Falha ao carregar filmes'));
