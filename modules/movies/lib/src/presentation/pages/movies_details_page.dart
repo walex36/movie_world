@@ -8,7 +8,12 @@ import 'package:movies/src/presentation/widgets/movies_details_state/movies_deta
 
 class MoviesDetailsPage extends StatefulWidget {
   final Movie movie;
-  const MoviesDetailsPage({super.key, required this.movie});
+  final String typeSearchMovies;
+  const MoviesDetailsPage({
+    super.key,
+    required this.movie,
+    required this.typeSearchMovies,
+  });
 
   @override
   State<MoviesDetailsPage> createState() => _MoviesDetailsPageState();
@@ -20,7 +25,10 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
   @override
   void initState() {
     super.initState();
-    bloc.add(InitMoviesDetails(movieCache: widget.movie));
+    bloc.add(InitMoviesDetails(
+      movieCache: widget.movie,
+      typeSearchMovies: widget.typeSearchMovies,
+    ));
   }
 
   @override
@@ -33,19 +41,15 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
     ThemeData theme = Theme.of(context);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: theme.colorScheme.primary,
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.light,
         ),
-        title: Text(
-          'Movies',
-          style: TextStyle(
-            color: theme.colorScheme.onPrimary,
-            fontSize: 18,
-          ),
-        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         toolbarHeight: 71,
       ),
       body: BlocBuilder<MoviesDetailsBloc, MoviesDetailsState>(
@@ -61,7 +65,7 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
               );
             case ControlStatus.failure:
             default:
-              return const Center(child: Text('Falha ao carregar filmes'));
+              return const Center(child: Text('Falha ao carregar filme'));
           }
         },
       ),

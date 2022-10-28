@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:lib_core/lib_core.dart';
-import 'package:lib_movies/src/domain/entities/movie_entity.dart';
-import 'package:lib_movies/src/domain/repositories/i_movies_repository.dart';
+import 'package:lib_dependencies/lib_dependencies.dart';
+import 'package:lib_movies/lib_movies.dart';
 
 class GetMovieUsecase implements UseCase<Movie, ParamsGetMovie> {
   final IMoviesRepository _repository;

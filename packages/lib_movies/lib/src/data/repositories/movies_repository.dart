@@ -1,4 +1,5 @@
 import 'package:lib_movies/lib_movies.dart';
+import 'package:lib_movies/src/data/models/actor_model.dart';
 import 'package:lib_movies/src/data/models/movie_model.dart';
 import 'package:lib_core/src/error/failures.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
@@ -23,13 +24,51 @@ class MoviesRepository implements IMoviesRepository {
   }
 
   @override
-  Future<Either<MovieFailure, List<Movie>>> getMoviesPopular() async {
+  Future<Either<MovieFailure, List<Movie>>> getMoviesPopular({
+    required int page,
+  }) async {
     try {
       final List<MovieModel> result =
-          await _moviesRemoteDatasource.getMoviesPopular();
+          await _moviesRemoteDatasource.getMoviesPopular(page: page);
 
       return Right(List<Movie>.from(result.map(
         (movie) => movie.toEntity(),
+      )));
+    } catch (e) {
+      return const Left(MovieFailure());
+    }
+  }
+
+  @override
+  Future<Either<MovieFailure, List<Movie>>> getMoviesTrending({
+    required int page,
+    required bool dayAndNotWeek,
+  }) async {
+    try {
+      final List<MovieModel> result =
+          await _moviesRemoteDatasource.getMoviesTrending(
+        page: page,
+        dayAndNotWeek: dayAndNotWeek,
+      );
+
+      return Right(List<Movie>.from(result.map(
+        (movie) => movie.toEntity(),
+      )));
+    } catch (e) {
+      return const Left(MovieFailure());
+    }
+  }
+
+  @override
+  Future<Either<MovieFailure, List<Actor>>> getCredits(
+      {required int idMovie}) async {
+    try {
+      final List<ActorModel> result = await _moviesRemoteDatasource.getCredits(
+        idMovie: idMovie,
+      );
+
+      return Right(List<Actor>.from(result.map(
+        (actor) => actor.toEntity(),
       )));
     } catch (e) {
       return const Left(MovieFailure());

@@ -27,7 +27,9 @@ class CompanyModel extends Company {
   factory CompanyModel.fromMap(Map<String, dynamic> map) {
     return CompanyModel(
       id: map['id'] ?? 0,
-      logoPath: map['logo_path'] ?? '',
+      logoPath: map['logo_path'] != null
+          ? 'https://image.tmdb.org/t/p/w500${map['logo_path']}'
+          : '',
       name: map['name'] ?? '',
       originCountry: map['origin_country'] ?? '',
     );

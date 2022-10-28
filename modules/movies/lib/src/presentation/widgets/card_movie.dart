@@ -4,7 +4,12 @@ import 'package:lib_movies/lib_movies.dart';
 
 class CardMovie extends StatefulWidget {
   final Movie movie;
-  const CardMovie({super.key, required this.movie});
+  final TypeSearchMovies typeSearchMovies;
+  const CardMovie({
+    super.key,
+    required this.movie,
+    required this.typeSearchMovies,
+  });
 
   @override
   State<CardMovie> createState() => _CardMovieState();
@@ -18,6 +23,7 @@ class _CardMovieState extends State<CardMovie> {
         'moviesDetails',
         arguments: {
           'movie': widget.movie,
+          'typeSearchMovies': widget.typeSearchMovies.name
         },
       ),
       child: Container(
@@ -29,7 +35,7 @@ class _CardMovieState extends State<CardMovie> {
               height: 200,
               width: 150,
               child: Hero(
-                tag: widget.movie.posterPath,
+                tag: widget.movie.posterPath + widget.typeSearchMovies.name,
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
                   imageUrl: widget.movie.posterPath,
