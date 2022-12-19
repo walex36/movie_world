@@ -17,6 +17,12 @@ class MovieFailure extends IFailure {
   }) : super(message);
 }
 
+class SerieFailure extends IFailure {
+  const SerieFailure({
+    String message = 'Não foi possivel buscar series',
+  }) : super(message);
+}
+
 class InitializersFailure extends IFailure {
   const InitializersFailure(
       {String message = 'Não foi possivel inicializar modulos'})

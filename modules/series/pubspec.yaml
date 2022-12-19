@@ -1,0 +1,32 @@
+name: series
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  lib_core:
+    path: ../../packages/lib_core
+  lib_dependencies:
+    path: ../../packages/lib_dependencies
+  lib_series:
+    path: ../../packages/lib_series
+  lib_movies:
+    path: ../../packages/lib_movies
+  lib_blur_hash:
+    path: ../../packages/lib_blur_hash
+
+  movies:
+    path: ../movies
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

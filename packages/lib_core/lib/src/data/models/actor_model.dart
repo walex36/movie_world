@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lib_movies/lib_movies.dart';
+import 'package:lib_core/lib_core.dart';
 
 class ActorModel extends Actor {
   const ActorModel({
@@ -31,36 +31,6 @@ class ActorModel extends Actor {
           order: order,
         );
 
-  ActorModel copyWith({
-    bool? adult,
-    int? gender,
-    int? id,
-    String? knownForDepartment,
-    String? name,
-    String? originalName,
-    double? popularity,
-    String? profilePath,
-    int? castId,
-    String? character,
-    String? creditId,
-    int? order,
-  }) {
-    return ActorModel(
-      adult: adult ?? this.adult,
-      gender: gender ?? this.gender,
-      id: id ?? this.id,
-      knownForDepartment: knownForDepartment ?? this.knownForDepartment,
-      name: name ?? this.name,
-      originalName: originalName ?? this.originalName,
-      popularity: popularity ?? this.popularity,
-      profilePath: profilePath ?? this.profilePath,
-      castId: castId ?? this.castId,
-      character: character ?? this.character,
-      creditId: creditId ?? this.creditId,
-      order: order ?? this.order,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'adult': adult,
@@ -90,10 +60,10 @@ class ActorModel extends Actor {
       profilePath: map['profile_path'] != null
           ? 'https://image.tmdb.org/t/p/w500${map['profile_path']}'
           : '',
-      castId: map['cast_id'] ?? '',
+      castId: map['cast_id'] ?? 0,
       character: map['character'] ?? '',
       creditId: map['credit_id'] ?? '',
-      order: map['order'] ?? '',
+      order: map['order'] ?? 0,
     );
   }
 

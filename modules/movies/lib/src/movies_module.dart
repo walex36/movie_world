@@ -21,9 +21,11 @@ class MoviesModule extends Module {
         ),
         Bind.singleton(
           (i) => MoviesDetailsBloc(
-              getMovieUsecase: i(),
-              getHashImageUsecase: i(),
-              getCreditsUsecase: i()),
+            getMovieUsecase: i(),
+            getHashImageUsecase: i(),
+            getCreditsUsecase: i(),
+            getWatchUsecase: i(),
+          ),
         ),
 
         /// UseCase
@@ -32,6 +34,7 @@ class MoviesModule extends Module {
         Bind((i) => GetMovieTrendingUsecase(repository: i())),
         Bind((i) => GetHashImageUsecase(repository: i())),
         Bind((i) => GetCreditsUsecase(repository: i())),
+        Bind((i) => GetWatchUsecase(repository: i())),
 
         // Repositories
         Bind<IMoviesRepository>((i) => MoviesRepository(

@@ -21,6 +21,9 @@ dependencies:
   # state manager
   flutter_bloc: ^8.1.1
 
+  # Date Formater
+  intl: ^0.17.0
+
   # others
   equatable: ^2.0.5
   dartz: ^0.10.1

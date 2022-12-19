@@ -32,6 +32,14 @@ class _HomeMoviesPageState extends State<HomeMoviesPage> {
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.light,
         ),
+        actions: [
+          IconButton(
+            onPressed: () => Modular.to.pushNamed(
+              RoutesConst.series,
+            ),
+            icon: Icon(Icons.movie),
+          )
+        ],
         title: Text(
           'Movies',
           style: TextStyle(

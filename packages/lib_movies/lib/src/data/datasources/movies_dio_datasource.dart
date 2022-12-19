@@ -1,7 +1,7 @@
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/src/data/datasources/i_movies_remote_datasource.dart';
-import 'package:lib_movies/src/data/models/actor_model.dart';
+import 'package:lib_core/src/data/models/actor_model.dart';
 import 'package:lib_movies/src/data/models/movie_model.dart';
 
 class MoviesDioDatasource implements IMoviesRemoteDatasource {
@@ -77,7 +77,7 @@ class MoviesDioDatasource implements IMoviesRemoteDatasource {
   Future<List<ActorModel>> getCredits({required int idMovie}) async {
     try {
       final response = await _client.get(
-        TmdbConst.creditsById(idMovie: idMovie),
+        TmdbConst.creditsMovieById(idMovie: idMovie),
       );
 
       if (response.statusCode == 200) {
@@ -85,6 +85,31 @@ class MoviesDioDatasource implements IMoviesRemoteDatasource {
             List<Map<String, dynamic>>.from(response.data['cast']);
 
         return List<ActorModel>.from(responseBody.map(ActorModel.fromMap));
+      }
+      throw ServerException();
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<WatchCountryModel>> getWatch({required int idMovie}) async {
+    try {
+      final response = await _client.get(
+        TmdbConst.watchMovie(idMovie: idMovie),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responseBody =
+            Map<String, dynamic>.from(response.data['results']);
+
+        List<WatchCountryModel> listWatch = [];
+
+        responseBody.forEach((key, value) {
+          listWatch.add(WatchCountryModel.fromMap(key, value));
+        });
+
+        return listWatch;
       }
       throw ServerException();
     } catch (e) {

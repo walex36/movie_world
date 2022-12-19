@@ -1,16 +1,19 @@
 library lib_dependencies;
 
-/// network
+/// [NETWORK]
 export 'package:dio/dio.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 
-/// injection
+/// [INJECTION]
 export 'package:flutter_modular/flutter_modular.dart';
 
-/// state manager
+/// [STATE_MANAGEMENT]
 export 'package:flutter_bloc/flutter_bloc.dart';
 
-/// others
+/// [FORMATTER]
+export 'package:intl/intl.dart';
+
+/// [OTHERS]
 export 'package:equatable/equatable.dart';
 export 'package:dartz/dartz.dart' show Either, Right, Left;
 export 'package:cached_network_image/cached_network_image.dart';

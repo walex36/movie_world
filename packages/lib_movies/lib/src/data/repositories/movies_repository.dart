@@ -1,6 +1,5 @@
 import 'package:lib_movies/lib_movies.dart';
-import 'package:lib_movies/src/data/models/actor_model.dart';
-import 'package:lib_movies/src/data/models/movie_model.dart';
+import 'package:lib_core/lib_core.dart';
 import 'package:lib_core/src/error/failures.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 
@@ -69,6 +68,23 @@ class MoviesRepository implements IMoviesRepository {
 
       return Right(List<Actor>.from(result.map(
         (actor) => actor.toEntity(),
+      )));
+    } catch (e) {
+      return const Left(MovieFailure());
+    }
+  }
+
+  @override
+  Future<Either<MovieFailure, List<WatchCountry>>> getWatch(
+      {required int idMovie}) async {
+    try {
+      final List<WatchCountryModel> result =
+          await _moviesRemoteDatasource.getWatch(
+        idMovie: idMovie,
+      );
+
+      return Right(List<WatchCountry>.from(result.map(
+        (watch) => watch.toEntity(),
       )));
     } catch (e) {
       return const Left(MovieFailure());

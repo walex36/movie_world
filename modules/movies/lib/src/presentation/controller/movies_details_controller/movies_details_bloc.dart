@@ -11,20 +11,24 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
   final GetMovieUsecase _getMovieUsecase;
   final GetHashImageUsecase _getHashImageUsecase;
   final GetCreditsUsecase _getCreditsUsecase;
+  final GetWatchUsecase _getWatchUsecase;
 
   MoviesDetailsBloc({
     required GetMovieUsecase getMovieUsecase,
     required GetHashImageUsecase getHashImageUsecase,
     required GetCreditsUsecase getCreditsUsecase,
+    required GetWatchUsecase getWatchUsecase,
   })  : _getMovieUsecase = getMovieUsecase,
         _getHashImageUsecase = getHashImageUsecase,
         _getCreditsUsecase = getCreditsUsecase,
+        _getWatchUsecase = getWatchUsecase,
         super(MoviesDetailsState(
           movie: Movie(
             adult: false,
             backdropPath: '',
             belongsToCollection: const Collection(
                 id: 0, name: '', posterPath: '', backdropPath: ''),
+            budget: 0,
             genres: const [],
             homepage: '',
             id: 0,
@@ -40,6 +44,8 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
             spokenLanguages: const [],
             status: '',
             tagline: '',
+            revenue: 0,
+            runtime: 0,
             title: '',
             video: false,
             voteAverage: 0,
@@ -49,11 +55,13 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
           blurImage: 'L02Fc7j[fQj[j[fQfQfQfQfQfQfQ',
           status: ControlStatus.initial,
           credits: const [],
+          watchCountry: const [],
+          watchCountrySelect: null,
         )) {
     on<InitMoviesDetails>(_onInitMoviesDetails);
   }
 
-  void _onInitMoviesDetails(
+  Future<void> _onInitMoviesDetails(
     InitMoviesDetails event,
     Emitter<MoviesDetailsState> emit,
   ) async {
@@ -62,6 +70,9 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
       movie: event.movieCache,
       typeSearchMovies: event.typeSearchMovies,
       blurImage: 'L02Fc7j[fQj[j[fQfQfQfQfQfQfQ',
+      credits: [],
+      watchCountry: [],
+      watchCountrySelect: null,
     ));
 
     final failureOrMovie = await _getMovieUsecase(
@@ -85,6 +96,28 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
       (credits) => emit(state.copyWith(
         credits: credits,
       )),
+    );
+
+    final failureOrWatch = await _getWatchUsecase(ParamsGetWatch(
+      idMovie: event.movieCache.id,
+    ));
+
+    failureOrWatch.fold(
+      (failure) => null,
+      (watch) {
+        WatchCountry? watchSelect;
+        for (var element in watch) {
+          if (element.country.name == 'BR') {
+            watchSelect = element;
+            break;
+          }
+        }
+
+        emit(state.copyWith(
+          watchCountry: watch.isEmpty ? [] : watch,
+          watchCountrySelect: watchSelect ?? watch.first,
+        ));
+      },
     );
 
     final failureOrHash = await _getHashImageUsecase(ParamsGetHashImage(

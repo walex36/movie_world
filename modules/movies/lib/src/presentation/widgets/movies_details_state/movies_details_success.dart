@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/lib_movies.dart';
 import 'package:movies/src/presentation/widgets/card_actor.dart';
+import 'package:movies/src/presentation/widgets/list_where_watch.dart';
 import '../../controller/movies_details_controller/movies_details_bloc.dart';
 
 class MoviesDetailsSuccess extends StatefulWidget {
@@ -83,9 +85,28 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(state.movie.releaseDate.year.toString()),
+                                Text(state.movie.releaseDate.dayMonthYear()),
                               ],
-                            )
+                            ),
+                            Wrap(
+                              alignment: WrapAlignment.center,
+                              children: state.movie.genres
+                                  .map((genre) => Card(
+                                        color: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4),
+                                          child: Text(
+                                            genre.name,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                            ),
                           ],
                         ),
                       )
@@ -103,6 +124,55 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                         color: Colors.white,
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      state.movie.budget > 0
+                          ? Column(
+                              children: [
+                                const Text(
+                                  'Orçamento',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  'R\$ ' + state.movie.budget.moneyFormat(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(),
+                      state.movie.budget > 0
+                          ? Column(
+                              children: [
+                                const Text(
+                                  'Tempo',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  Duration(seconds: state.movie.runtime)
+                                      .secondsToHour(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(),
+                    ],
                   ),
                   const SizedBox(
                     height: 10,
@@ -128,6 +198,7 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Tooltip(
+                                            triggerMode: TooltipTriggerMode.tap,
                                             message: company.name,
                                             child: company.logoPath.isNotEmpty
                                                 ? SizedBox(
@@ -182,6 +253,16 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  state.watchCountry.isEmpty
+                      ? Container()
+                      : ListWhereWatch(
+                          listWatch: state.watchCountry,
+                          watchSelect: state.watchCountrySelect ??
+                              state.watchCountry.first,
+                        ),
                   const SizedBox(
                     height: 10,
                   ),

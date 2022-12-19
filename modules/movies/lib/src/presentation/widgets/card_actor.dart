@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/lib_movies.dart';
+import 'package:lib_core/lib_core.dart';
 
 class CardActor extends StatefulWidget {
   final Actor actor;
@@ -21,11 +21,11 @@ class _CardActorState extends State<CardActor> {
       margin: const EdgeInsets.only(right: 5),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 200,
             width: 150,
-            child: Hero(
-              tag: widget.actor.profilePath,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: widget.actor.profilePath,
@@ -42,12 +42,21 @@ class _CardActorState extends State<CardActor> {
           ),
           Column(
             children: [
-              // Text("${widget.movie.voteAverage} / 10"),
               Text(
-                widget.actor.originalName + ' / ' + widget.actor.character,
+                widget.actor.knownForDepartment,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                widget.actor.originalName,
                 textAlign: TextAlign.center,
                 maxLines: 2,
-                overflow: TextOverflow.fade,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                widget.actor.character,
+                textAlign: TextAlign.center,
               ),
             ],
           )

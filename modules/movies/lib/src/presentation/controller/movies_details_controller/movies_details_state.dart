@@ -6,6 +6,8 @@ class MoviesDetailsState extends Equatable {
   final String blurImage;
   final ControlStatus status;
   final List<Actor> credits;
+  final List<WatchCountry> watchCountry;
+  final WatchCountry? watchCountrySelect;
 
   const MoviesDetailsState({
     required this.movie,
@@ -13,6 +15,8 @@ class MoviesDetailsState extends Equatable {
     required this.blurImage,
     required this.status,
     required this.credits,
+    required this.watchCountry,
+    required this.watchCountrySelect,
   });
 
   MoviesDetailsState copyWith({
@@ -21,6 +25,8 @@ class MoviesDetailsState extends Equatable {
     String? blurImage,
     ControlStatus? status,
     List<Actor>? credits,
+    List<WatchCountry>? watchCountry,
+    WatchCountry? watchCountrySelect,
   }) {
     return MoviesDetailsState(
       movie: movie ?? this.movie,
@@ -28,6 +34,8 @@ class MoviesDetailsState extends Equatable {
       blurImage: blurImage ?? this.blurImage,
       status: status ?? this.status,
       credits: credits ?? this.credits,
+      watchCountry: watchCountry ?? this.watchCountry,
+      watchCountrySelect: watchCountrySelect ?? this.watchCountrySelect,
     );
   }
 
@@ -38,5 +46,6 @@ class MoviesDetailsState extends Equatable {
         blurImage,
         status,
         credits,
+        watchCountry,
       ];
 }

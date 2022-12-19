@@ -1,17 +1,14 @@
 import 'dart:convert';
 
+import 'package:lib_core/lib_core.dart';
 import 'package:lib_movies/lib_movies.dart';
-import 'package:lib_movies/src/data/models/collection_model.dart';
-import 'package:lib_movies/src/data/models/company_model.dart';
-import 'package:lib_movies/src/data/models/country_model.dart';
-import 'package:lib_movies/src/data/models/genre_model.dart';
-import 'package:lib_movies/src/data/models/languages_model.dart';
 
 class MovieModel extends Movie {
-  const MovieModel({
+  MovieModel({
     required bool adult,
     required String backdropPath,
     required CollectionModel belongsToCollection,
+    required int budget,
     required List<GenreModel> genres,
     required String homepage,
     required int id,
@@ -24,6 +21,8 @@ class MovieModel extends Movie {
     required List<CompanyModel> productionCompanies,
     required List<CountryModel> productionCountries,
     required DateTime releaseDate,
+    required int revenue,
+    required int runtime,
     required List<LanguagesModel> spokenLanguages,
     required String status,
     required String tagline,
@@ -35,7 +34,8 @@ class MovieModel extends Movie {
           adult: adult,
           backdropPath: backdropPath,
           belongsToCollection: belongsToCollection,
-          genres: genres,
+          budget: budget,
+          genres: List<Genre>.from(genres.map((genre) => genre.toEntity())),
           homepage: homepage,
           id: id,
           imdbId: imdbId,
@@ -44,10 +44,15 @@ class MovieModel extends Movie {
           overview: overview,
           popularity: popularity,
           posterPath: posterPath,
-          productionCompanies: productionCompanies,
-          productionCountries: productionCountries,
+          productionCompanies: List<Company>.from(
+              productionCompanies.map((company) => company.toEntity())),
+          productionCountries: List<Country>.from(
+              productionCountries.map((country) => country.toEntity())),
           releaseDate: releaseDate,
-          spokenLanguages: spokenLanguages,
+          revenue: revenue,
+          runtime: runtime,
+          spokenLanguages: List<Languages>.from(
+              spokenLanguages.map((language) => language.toEntity())),
           status: status,
           tagline: tagline,
           title: title,
@@ -61,6 +66,7 @@ class MovieModel extends Movie {
       'adult': adult,
       'backdropPath': backdropPath,
       'belongsToCollection': belongsToCollection.toString(),
+      'budget': budget,
       'genres': genres.asMap(),
       'homepage': homepage,
       'id': id,
@@ -73,6 +79,8 @@ class MovieModel extends Movie {
       'productionCompanies': productionCompanies.asMap(),
       'productionCountries': productionCountries.asMap(),
       'releaseDate': releaseDate.millisecondsSinceEpoch,
+      'revenue': revenue,
+      'runtime': runtime,
       'spokenLanguages': spokenLanguages.asMap(),
       'status': status,
       'tagline': tagline,
@@ -95,6 +103,7 @@ class MovieModel extends Movie {
               posterPath: '',
               backdropPath: '',
             ),
+      budget: map['budget'] ?? 0,
       genres: map['genres'] != null
           ? List<GenreModel>.from(
               map['genres'].map<GenreModel>(
@@ -138,6 +147,8 @@ class MovieModel extends Movie {
           : [],
       status: map['status'] ?? '',
       tagline: map['tagline'] ?? '',
+      revenue: map['revenue'] ?? 0,
+      runtime: map['runtime'] ?? 0,
       title: map['title'] ?? '',
       video: map['video'] ?? false,
       voteAverage: map['vote_average'] != null
@@ -152,6 +163,7 @@ class MovieModel extends Movie {
       adult: adult,
       backdropPath: backdropPath,
       belongsToCollection: belongsToCollection,
+      budget: budget,
       genres: genres,
       homepage: homepage,
       id: id,
@@ -167,6 +179,8 @@ class MovieModel extends Movie {
       spokenLanguages: spokenLanguages,
       status: status,
       tagline: tagline,
+      revenue: revenue,
+      runtime: runtime,
       title: title,
       video: video,
       voteAverage: voteAverage,
@@ -180,6 +194,7 @@ class MovieModel extends Movie {
       backdropPath: movie.backdropPath,
       belongsToCollection:
           CollectionModel.fromEntity(movie.belongsToCollection),
+      budget: movie.budget,
       genres: List<GenreModel>.from(movie.genres.map(
         (service) => GenreModel.fromEntity(service),
       )),
@@ -205,6 +220,8 @@ class MovieModel extends Movie {
       )),
       status: movie.status,
       tagline: movie.tagline,
+      revenue: movie.revenue,
+      runtime: movie.runtime,
       title: movie.title,
       video: movie.video,
       voteAverage: movie.voteAverage,

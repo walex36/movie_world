@@ -1,4 +1,5 @@
-import 'package:lib_movies/src/data/models/actor_model.dart';
+import 'package:lib_core/lib_core.dart';
+import 'package:lib_core/src/data/models/actor_model.dart';
 import 'package:lib_movies/src/data/models/movie_model.dart';
 
 abstract class IMoviesRemoteDatasource {
@@ -14,4 +15,6 @@ abstract class IMoviesRemoteDatasource {
   });
 
   Future<List<ActorModel>> getCredits({required int idMovie});
+
+  Future<List<WatchCountryModel>> getWatch({required int idMovie});
 }

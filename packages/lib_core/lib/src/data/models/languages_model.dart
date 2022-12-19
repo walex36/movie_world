@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lib_movies/lib_movies.dart';
+import 'package:lib_core/lib_core.dart';
 
 class LanguagesModel extends Languages {
   const LanguagesModel({
