@@ -1,10 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/src/domain/entities/collection_entity.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first, implementation_imports
 import 'package:lib_core/src/domain/entities/company_entity.dart';
 import 'package:lib_core/src/domain/entities/country_entity.dart';
 import 'package:lib_core/src/domain/entities/genre_entity.dart';
 import 'package:lib_core/src/domain/entities/languages_entity.dart';
+import 'package:lib_dependencies/lib_dependencies.dart';
+import 'package:lib_movies/src/domain/entities/collection_entity.dart';
 
 class Movie extends Equatable {
   final bool adult;

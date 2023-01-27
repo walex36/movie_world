@@ -37,7 +37,7 @@ class _HomeMoviesPageState extends State<HomeMoviesPage> {
             onPressed: () => Modular.to.pushNamed(
               RoutesConst.series,
             ),
-            icon: Icon(Icons.movie),
+            icon: const Icon(Icons.movie),
           )
         ],
         title: Text(

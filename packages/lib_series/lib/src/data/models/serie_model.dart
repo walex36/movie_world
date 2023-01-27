@@ -117,7 +117,7 @@ class SerieModel extends Serie {
               (by) => CreateByModel.fromMap(by),
             )),
       episodeRunTime: List<int>.from(map['episode_run_time'] ?? []),
-      firstAirDate: map['first_air_date'] == null
+      firstAirDate: map['first_air_date'] == null || map['first_air_date'] == ''
           ? DateTime(0)
           : DateTime.parse(map['first_air_date']),
       genres: map['genres'] == null
@@ -146,7 +146,9 @@ class SerieModel extends Serie {
       originalLanguage: map['original_language'] ?? '',
       originalName: map['original_name'] ?? '',
       overview: map['overview'] ?? '',
-      popularity: map['popularity'] ?? 0,
+      popularity: map['popularity'] == null
+          ? 0.0
+          : double.parse(map['popularity'].toString()),
       posterPath: map['poster_path'] == null
           ? ''
           : 'https://image.tmdb.org/t/p/w500${map['poster_path']}',

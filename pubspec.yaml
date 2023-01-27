@@ -18,6 +18,8 @@ dependencies:
     path: packages/lib_dependencies
   lib_endpoint:
     path: packages/lib_endpoint
+  lib_home:
+    path: packages/lib_home
   lib_movies:
     path: packages/lib_movies
   lib_series:
@@ -25,6 +27,8 @@ dependencies:
   lib_blur_hash:
     path: packages/lib_blur_hash
 
+  home:
+    path: modules/home
   movies:
     path: modules/movies
   series:

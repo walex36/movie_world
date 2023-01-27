@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';

@@ -133,4 +133,43 @@ class SeriesDioDatasource implements ISeriesRemoteDatasource {
       throw ServerException();
     }
   }
+
+  @override
+  Future<List<GenreModel>> getGenresSeries() async {
+    try {
+      final response = await _client.get(
+        TmdbConst.genreSerie(),
+      );
+
+      if (response.statusCode == 200) {
+        List<Map<String, dynamic>> responseBody =
+            List<Map<String, dynamic>>.from(response.data['genres']);
+
+        return List<GenreModel>.from(responseBody.map(GenreModel.fromMap));
+      }
+      throw ServerException();
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<SerieModel>> getSeriesByGenre(
+      {required int idGenre, required int page}) async {
+    try {
+      final response = await _client.get(
+        TmdbConst.seriesByGenre(idGenre: idGenre, page: page),
+      );
+
+      if (response.statusCode == 200) {
+        List<Map<String, dynamic>> responseBody =
+            List<Map<String, dynamic>>.from(response.data['results']);
+
+        return List<SerieModel>.from(responseBody.map(SerieModel.fromMap));
+      }
+      throw ServerException();
+    } catch (e) {
+      throw ServerException();
+    }
+  }
 }

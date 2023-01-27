@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:lib_series/lib_series.dart';
-import 'package:lib_series/src/domain/entities/season_entity.dart';
 
 class SeasonModel extends Season {
   const SeasonModel({

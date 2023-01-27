@@ -11,6 +11,12 @@ abstract class IFailure extends Equatable {
       ];
 }
 
+class HomeFailure extends IFailure {
+  const HomeFailure({
+    String message = 'Não foi possivel buscar filmes e series',
+  }) : super(message);
+}
+
 class MovieFailure extends IFailure {
   const MovieFailure({
     String message = 'Não foi possivel buscar filmes',

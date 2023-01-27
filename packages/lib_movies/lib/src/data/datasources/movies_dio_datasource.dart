@@ -1,7 +1,6 @@
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/src/data/datasources/i_movies_remote_datasource.dart';
-import 'package:lib_core/src/data/models/actor_model.dart';
 import 'package:lib_movies/src/data/models/movie_model.dart';
 
 class MoviesDioDatasource implements IMoviesRemoteDatasource {
@@ -110,6 +109,50 @@ class MoviesDioDatasource implements IMoviesRemoteDatasource {
         });
 
         return listWatch;
+      }
+      throw ServerException();
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<GenreModel>> getGenresMovies() async {
+    try {
+      final response = await _client.get(
+        TmdbConst.genreMovie(),
+      );
+
+      if (response.statusCode == 200) {
+        List<Map<String, dynamic>> responseBody =
+            List<Map<String, dynamic>>.from(response.data['genres']);
+
+        return List<GenreModel>.from(responseBody.map(GenreModel.fromMap));
+      }
+      throw ServerException();
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getMoviesByGenre({
+    required int idGenre,
+    required int page,
+  }) async {
+    try {
+      final response = await _client.get(
+        TmdbConst.moviesByGenre(
+          idGenre: idGenre,
+          page: page,
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        List<Map<String, dynamic>> responseBody =
+            List<Map<String, dynamic>>.from(response.data['results']);
+
+        return List<MovieModel>.from(responseBody.map(MovieModel.fromMap));
       }
       throw ServerException();
     } catch (e) {

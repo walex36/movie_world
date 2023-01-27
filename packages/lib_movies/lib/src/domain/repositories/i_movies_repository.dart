@@ -19,4 +19,11 @@ abstract class IMoviesRepository {
   Future<Either<MovieFailure, List<WatchCountry>>> getWatch({
     required int idMovie,
   });
+
+  Future<Either<MovieFailure, List<Genre>>> getGenresMovies();
+
+  Future<Either<MovieFailure, List<Movie>>> getMoviesByGenre({
+    required int idGenre,
+    required int page,
+  });
 }

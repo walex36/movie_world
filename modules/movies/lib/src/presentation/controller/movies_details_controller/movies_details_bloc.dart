@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:lib_blur_hash/lib_blur_hash.dart';
 import 'package:lib_core/lib_core.dart';
@@ -115,7 +116,7 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
 
         emit(state.copyWith(
           watchCountry: watch.isEmpty ? [] : watch,
-          watchCountrySelect: watchSelect ?? watch.first,
+          watchCountrySelect: watch.isEmpty ? null : watchSelect ?? watch.first,
         ));
       },
     );

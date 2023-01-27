@@ -47,8 +47,8 @@ class _ListWhereWatchState extends State<ListWhereWatch> {
                 items: listWatch
                     .map<DropdownMenuItem<WatchCountry>>(
                       (watch) => DropdownMenuItem(
-                        child: Text(watch.country.name),
                         value: watch,
+                        child: Text(watch.country.name),
                       ),
                     )
                     .toList(),
@@ -100,7 +100,7 @@ class _ListWhereWatchState extends State<ListWhereWatch> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const Text(
-                          'Streaming',
+                          'Assinar',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

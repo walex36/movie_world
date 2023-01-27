@@ -1,6 +1,7 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:dartz/dartz.dart';
 import 'package:lib_core/lib_core.dart';
-import 'package:lib_movies/lib_movies.dart';
 import 'package:lib_series/lib_series.dart';
 
 class GetCreditsSeriesUsecase

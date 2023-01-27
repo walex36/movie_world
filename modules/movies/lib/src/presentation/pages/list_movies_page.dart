@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/lib_movies.dart';
@@ -28,8 +27,6 @@ class _ListMoviesPageState extends State<ListMoviesPage> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-
     return BlocBuilder<ListMoviesBloc, ListMoviesState>(
       bloc: bloc,
       builder: (context, state) {

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/lib_movies.dart';
+import 'package:lib_core/lib_core.dart';
 
 class CardMovie extends StatefulWidget {
   final Movie movie;
-  final TypeSearchMovies typeSearchMovies;
+  final String typeSearchMovies;
   const CardMovie({
     super.key,
     required this.movie,
@@ -18,24 +19,21 @@ class CardMovie extends StatefulWidget {
 class _CardMovieState extends State<CardMovie> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Modular.to.pushNamed(
-        'moviesDetails',
-        arguments: {
-          'movie': widget.movie,
-          'typeSearchMovies': widget.typeSearchMovies.name
-        },
-      ),
-      child: Container(
-        width: 150,
-        margin: const EdgeInsets.only(right: 5),
-        child: Column(
+    return Padding(
+      padding: const EdgeInsets.only(right: 5),
+      child: InkWell(
+        onTap: () => Modular.to.pushNamed(
+          'moviesDetails',
+          arguments: {
+            'movie': widget.movie,
+            'typeSearchMovies': widget.typeSearchMovies
+          },
+        ),
+        child: Stack(
           children: [
-            Container(
-              height: 200,
-              width: 150,
+            SizedBox(
               child: Hero(
-                tag: widget.movie.posterPath + widget.typeSearchMovies.name,
+                tag: widget.movie.posterPath + widget.typeSearchMovies,
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
                   imageUrl: widget.movie.posterPath,
@@ -43,24 +41,60 @@ class _CardMovieState extends State<CardMovie> {
                       CircularProgressIndicator(
                     value: downloadProgress.progress,
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            Column(
-              children: [
-                Text("${widget.movie.voteAverage} / 10"),
-                Text(
-                  widget.movie.title,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.fade,
-                ),
-              ],
-            )
+            Positioned(
+                top: 5,
+                child: Column(
+                  children: [
+                    Visibility(
+                      visible: widget.movie.releaseDate.isSoon(),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 5),
+                          child: Text(
+                            'Em Breve',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: widget.movie.releaseDate.isNovelty(),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.redAccent,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 5),
+                          child: Text(
+                            'Novo',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ))
           ],
         ),
       ),

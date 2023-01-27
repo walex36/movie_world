@@ -11,6 +11,8 @@ export 'src/domain/usecases/get_movies_popular_usecase.dart';
 export 'src/domain/usecases/get_movie_trending_usecase.dart';
 export 'src/domain/usecases/get_credits_usecase.dart';
 export 'src/domain/usecases/get_watch_usecase.dart';
+export 'src/domain/usecases/get_genres_movies_usecase.dart';
+export 'src/domain/usecases/get_movies_by_genre_usecase.dart';
 
 export 'src/domain/repositories/i_movies_repository.dart';
 export 'src/data/repositories/movies_repository.dart';

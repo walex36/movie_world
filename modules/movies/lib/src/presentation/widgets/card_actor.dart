@@ -33,7 +33,7 @@ class _CardActorState extends State<CardActor> {
                     CircularProgressIndicator(
                   value: downloadProgress.progress,
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ),
@@ -45,17 +45,20 @@ class _CardActorState extends State<CardActor> {
               Text(
                 widget.actor.knownForDepartment,
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
               Text(
                 widget.actor.originalName,
                 textAlign: TextAlign.center,
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 widget.actor.character,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),
             ],

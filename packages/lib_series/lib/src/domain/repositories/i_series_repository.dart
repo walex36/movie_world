@@ -28,4 +28,11 @@ abstract class ISeriesRepository {
     required int idSerie,
     required int seasonNumber,
   });
+
+  Future<Either<IFailure, List<Genre>>> getGenresSeries();
+
+  Future<Either<IFailure, List<Serie>>> getSeriesByGenre({
+    required int idGenre,
+    required int page,
+  });
 }

@@ -21,4 +21,11 @@ abstract class ISeriesRemoteDatasource {
     required int idSerie,
     required int seasonNumber,
   });
+
+  Future<List<GenreModel>> getGenresSeries();
+
+  Future<List<SerieModel>> getSeriesByGenre({
+    required int idGenre,
+    required int page,
+  });
 }

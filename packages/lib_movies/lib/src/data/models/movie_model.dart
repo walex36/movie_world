@@ -117,7 +117,9 @@ class MovieModel extends Movie {
       originalLanguage: map['original_language'] ?? '',
       originalTitle: map['original_title'] ?? '',
       overview: map['overview'] ?? '',
-      popularity: map['popularity'] ?? 0.0,
+      popularity: map['vote_average'] != null
+          ? double.parse(map['popularity'].toString())
+          : 0.0,
       posterPath: map['poster_path'] != null
           ? 'https://image.tmdb.org/t/p/w500${map['poster_path']}'
           : '',

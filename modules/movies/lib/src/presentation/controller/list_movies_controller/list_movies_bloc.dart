@@ -1,6 +1,7 @@
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/lib_movies.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
 part 'list_movies_event.dart';
@@ -9,15 +10,12 @@ part 'list_movies_state.dart';
 class ListMoviesBloc extends Bloc<ListMoviesEvent, ListMoviesState> {
   final GetMoviesPopularUsecase _getMoviesPopularUsecase;
   final GetMovieTrendingUsecase _getMovieTrendingUsecase;
-  final DioConfig _dioConfig;
 
   ListMoviesBloc({
     required GetMoviesPopularUsecase getMoviesPopularUsecase,
     required GetMovieTrendingUsecase getMovieTrendingUsecase,
-    required DioConfig dioConfig,
   })  : _getMoviesPopularUsecase = getMoviesPopularUsecase,
         _getMovieTrendingUsecase = getMovieTrendingUsecase,
-        _dioConfig = dioConfig,
         super(const ListMoviesState(
           movieList: [],
           titleList: '',
@@ -31,7 +29,6 @@ class ListMoviesBloc extends Bloc<ListMoviesEvent, ListMoviesState> {
     InitListMovies event,
     Emitter<ListMoviesState> emit,
   ) async {
-    _dioConfig.init();
     emit(state.copyWith(
       status: ControlStatus.loading,
       typeSearchMovies: event.typeSearchMovies,

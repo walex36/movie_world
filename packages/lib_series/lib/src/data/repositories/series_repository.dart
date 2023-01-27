@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_series/lib_series.dart';
 import 'package:dartz/dartz.dart';
@@ -91,6 +93,34 @@ class SeriesRepository implements ISeriesRepository {
       );
 
       return Right(result.toEntity());
+    } catch (e) {
+      return const Left(SerieFailure());
+    }
+  }
+
+  @override
+  Future<Either<IFailure, List<Genre>>> getGenresSeries() async {
+    try {
+      final List<GenreModel> result = await _datasource.getGenresSeries();
+
+      return Right(List<Genre>.from(result.map((genre) => genre.toEntity())));
+    } catch (e) {
+      return const Left(SerieFailure());
+    }
+  }
+
+  @override
+  Future<Either<IFailure, List<Serie>>> getSeriesByGenre({
+    required int idGenre,
+    required int page,
+  }) async {
+    try {
+      final List<SerieModel> result = await _datasource.getSeriesByGenre(
+        idGenre: idGenre,
+        page: page,
+      );
+
+      return Right(List<Serie>.from(result.map((serie) => serie.toEntity())));
     } catch (e) {
       return const Left(SerieFailure());
     }

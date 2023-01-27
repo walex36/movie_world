@@ -1,0 +1,27 @@
+name: lib_home
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  lib_core:
+    path: ../lib_core
+  lib_dependencies:
+    path: ../lib_dependencies
+  lib_movies:
+    path: ../lib_movies
+  lib_series:
+    path: ../lib_series
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

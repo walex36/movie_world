@@ -15,4 +15,13 @@ extension DateExtension on DateTime {
     final format = DateFormat('dd/MM/yyyy');
     return format.format(this);
   }
+
+  bool isNovelty() {
+    return isAfter(DateTime.now().subtract(const Duration(days: 30))) &&
+        isBefore(DateTime.now());
+  }
+
+  bool isSoon() {
+    return isAfter(DateTime.now());
+  }
 }

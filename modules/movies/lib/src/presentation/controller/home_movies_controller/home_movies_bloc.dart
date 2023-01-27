@@ -1,4 +1,5 @@
 import 'package:lib_movies/lib_movies.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';

@@ -1,7 +1,6 @@
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_series/lib_series.dart';
-import 'package:lib_series/src/domain/entities/season_entity.dart';
 
 class Serie extends Equatable {
   final String backdropPath;

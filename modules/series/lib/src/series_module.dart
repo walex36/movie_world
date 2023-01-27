@@ -1,10 +1,8 @@
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_series/lib_series.dart';
-import 'package:series/src/controller/details_series_controller/details_series_bloc.dart';
-import 'package:series/src/controller/home_series_controller/home_series_bloc.dart';
-import 'package:series/src/controller/list_series_controller/list_series_bloc.dart';
-import 'package:series/src/pages/details_series_page.dart';
-import 'package:series/src/pages/home_series_page.dart';
+import 'package:series/series.dart';
+import 'presentation/controller/home_series_controller/home_series_bloc.dart';
+import 'presentation/controller/list_series_controller/list_series_bloc.dart';
+import 'presentation/pages/home_series_page.dart';
 
 class SeriesModule extends Module {
   @override
@@ -27,34 +25,8 @@ class SeriesModule extends Module {
         ),
 
         /// Usecases
-        Bind(
-          (i) => GetSeriesPopularUsecase(repository: i()),
-        ),
-        Bind(
-          (i) => GetSeriesTrendingUsecase(repository: i()),
-        ),
-        Bind(
-          (i) => GetSeriesUsecase(repository: i()),
-        ),
-        Bind(
-          (i) => GetCreditsSeriesUsecase(repository: i()),
-        ),
-        Bind(
-          (i) => GetWatchSeriesUsecase(repository: i()),
-        ),
-        Bind(
-          (i) => GetEpisodesUsecase(repository: i()),
-        ),
-
         /// Repository
-        Bind<ISeriesRepository>(
-          (i) => SeriesRepository(remoteDatasource: i()),
-        ),
-
         /// Datasources
-        Bind<ISeriesRemoteDatasource>(
-          (i) => SeriesDioDatasource(client: i()),
-        ),
       ];
 
   @override
@@ -67,7 +39,7 @@ class SeriesModule extends Module {
           '/seriesDetails',
           child: (_, args) => DetailsSeriePage(
             serie: args.data['serie'],
-            typeSearchSerie: args.data['typeSearchSeries'],
+            typeSearchSerie: args.data['typeSearchSerie'],
           ),
         )
       ];

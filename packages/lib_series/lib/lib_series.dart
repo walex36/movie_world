@@ -20,6 +20,8 @@ export 'src/domain/usecases/get_series_usecase.dart';
 export 'src/domain/usecases/get_credits_series_usecase.dart';
 export 'src/domain/usecases/get_watch_series_usecase.dart';
 export 'src/domain/usecases/get_episodes_usecase.dart';
+export 'src/domain/usecases/get_genres_series_usecase.dart';
+export 'src/domain/usecases/get_series_by_genre_usecase.dart';
 
 export 'src/data/datasources/i_series_remote_datasource.dart';
 export 'src/data/datasources/series_dio_datasource.dart';

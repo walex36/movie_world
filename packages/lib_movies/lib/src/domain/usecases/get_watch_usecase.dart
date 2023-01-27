@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:dartz/dartz.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_movies/lib_movies.dart';

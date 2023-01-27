@@ -53,22 +53,77 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 250,
-                        width: 170,
-                        child: Hero(
-                          tag: widget.movieCache.posterPath +
-                              state.typeSearchMovies,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: widget.movieCache.posterPath,
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: 250,
+                            width: 170,
+                            child: Hero(
+                              tag: widget.movieCache.posterPath +
+                                  state.typeSearchMovies,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: widget.movieCache.posterPath,
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          Positioned(
+                              top: 5,
+                              child: Column(
+                                children: [
+                                  Visibility(
+                                    visible: state.movie.releaseDate.isSoon(),
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.amber,
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(right: 5),
+                                        child: Text(
+                                          'Em Breve',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        state.movie.releaseDate.isNovelty(),
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.redAccent,
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(right: 5),
+                                        child: Text(
+                                          'Novo',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ))
+                        ],
                       ),
                       Expanded(
                         child: Column(
@@ -85,6 +140,15 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber.shade600,
+                                ),
+                                Text(
+                                    state.movie.voteAverage.toStringAsFixed(1)),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Text(state.movie.releaseDate.dayMonthYear()),
                               ],
                             ),
@@ -143,7 +207,7 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                                   ),
                                 ),
                                 Text(
-                                  'R\$ ' + state.movie.budget.moneyFormat(),
+                                  'R\$ ${state.movie.budget.moneyFormat()}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                   ),

@@ -4,6 +4,7 @@ enum TypeSearchSeries {
   trending,
   popular,
   topRated,
+  genre,
 }
 
 extension TypeSearchMoviesExtension on TypeSearchSeries {
@@ -12,8 +13,10 @@ extension TypeSearchMoviesExtension on TypeSearchSeries {
   bool get isTrending => this == TypeSearchSeries.trending;
   bool get isPopular => this == TypeSearchSeries.popular;
   bool get isTopRated => this == TypeSearchSeries.topRated;
+  bool get isGenre => this == TypeSearchSeries.genre;
 
   bool get isNotTrending => this != TypeSearchSeries.trending;
   bool get isNotPopular => this != TypeSearchSeries.popular;
   bool get isNotTopRated => this != TypeSearchSeries.topRated;
+  bool get isNotGenre => this != TypeSearchSeries.genre;
 }

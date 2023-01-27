@@ -10,8 +10,6 @@ class HomeMoviesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-
     HomeMoviesBloc bloc = Modular.get();
 
     return BlocBuilder<HomeMoviesBloc, HomeMoviesState>(
