@@ -37,6 +37,7 @@ class ListMoviesSuccess extends StatelessWidget {
                 .map((movie) => CardMovie(
                       movie: movie,
                       typeSearchMovies: typeSearchMovies.name,
+                      cardReduced: true,
                     ))
                 .toList(),
           ),

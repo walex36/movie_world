@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home/src/controller/home_bloc/home_bloc.dart';
-import 'package:home/src/widgets/home_state/home_success.dart';
+import 'package:home/src/controller/all_midia_bloc/all_midia_bloc.dart';
+import 'package:home/src/widgets/all_media_state/all_media_success.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AllMediaPage extends StatefulWidget {
+  final List<dynamic> listMedia;
+  final String midiaType;
+  const AllMediaPage({
+    super.key,
+    required this.listMedia,
+    required this.midiaType,
+  });
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AllMediaPage> createState() => _AllMediaPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  HomeBloc bloc = Modular.get();
+class _AllMediaPageState extends State<AllMediaPage> {
+  late AllMidiaBloc bloc = Modular.get<AllMidiaBloc>();
 
   @override
   void initState() {
     super.initState();
-    bloc.add(HomeInit());
+    bloc.add(AllMidiaInitial(
+      listMedia: widget.listMedia,
+    ));
   }
 
   @override
@@ -41,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         ),
         toolbarHeight: 71,
       ),
-      body: BlocBuilder<HomeBloc, HomeState>(
+      body: BlocBuilder<AllMidiaBloc, AllMidiaState>(
         bloc: bloc,
         builder: (context, state) {
           switch (state.status) {
@@ -50,7 +58,10 @@ class _HomePageState extends State<HomePage> {
             case ControlStatus.loading:
               return const Center(child: CircularProgressIndicator());
             case ControlStatus.success:
-              return const HomeSuccess();
+              return AllMediaSuccess(
+                listMedia: state.listMidia,
+                midiaType: widget.midiaType,
+              );
             case ControlStatus.failure:
             default:
               return const Center(child: Text('Falha ao iniciar'));

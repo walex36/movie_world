@@ -1,4 +1,6 @@
-import 'package:home/src/controller/home_bloc.dart';
+import 'package:home/src/controller/all_midia_bloc/all_midia_bloc.dart';
+import 'package:home/src/controller/home_bloc/home_bloc.dart';
+import 'package:home/src/pages/all_midia_page.dart';
 import 'package:home/src/pages/home_page.dart';
 import 'package:lib_blur_hash/lib_blur_hash.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
@@ -42,6 +44,8 @@ class HomeModule extends Module {
           ),
         ),
 
+        Bind((i) => AllMidiaBloc()),
+
         /// Usecases
         ///  Home
         Bind((i) => GetTrendingUsecase(repository: i())),
@@ -84,6 +88,13 @@ class HomeModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const HomePage(),
+        ),
+        ChildRoute(
+          '/allMedia',
+          child: (context, args) => AllMediaPage(
+            listMedia: args.data['listMedia'],
+            midiaType: args.data['midiaType'],
+          ),
         ),
         ChildRoute(
           '/moviesDetails',

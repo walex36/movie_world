@@ -6,10 +6,12 @@ import 'package:lib_core/lib_core.dart';
 class CardSerie extends StatefulWidget {
   final Serie serie;
   final String typeSearchSeries;
+  final bool cardReduced;
   const CardSerie({
     super.key,
     required this.serie,
     required this.typeSearchSeries,
+    required this.cardReduced,
   });
 
   @override

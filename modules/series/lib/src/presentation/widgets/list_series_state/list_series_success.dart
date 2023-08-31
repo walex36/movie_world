@@ -37,6 +37,7 @@ class ListSeriesSuccess extends StatelessWidget {
                 .map((serie) => CardSerie(
                       serie: serie,
                       typeSearchSeries: typeSearchSeries.name,
+                      cardReduced: true,
                     ))
                 .toList(),
           ),

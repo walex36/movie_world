@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home/src/controller/home_bloc.dart';
+import 'package:home/src/controller/home_bloc/home_bloc.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_movies/lib_movies.dart';
 import 'package:lib_series/lib_series.dart';
@@ -43,12 +43,14 @@ class HomeSuccess extends StatelessWidget {
                             return CardSerie(
                               serie: serie,
                               typeSearchSeries: TypeSearchSeries.trending.name,
+                              cardReduced: true,
                             );
                           } else {
                             Movie movie = MovieModel.fromMap(item).toEntity();
                             return CardMovie(
                               movie: movie,
                               typeSearchMovies: TypeSearchMovies.trending.name,
+                              cardReduced: true,
                             );
                           }
                         }).toList()),
@@ -58,15 +60,37 @@ class HomeSuccess extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Filmes Populares',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Filmes Populares',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => Modular.to.pushNamed(
+                            'allMedia',
+                            arguments: {
+                              'listMedia': state.moviesPopular,
+                              'midiaType': 'movie',
+                            },
+                          ),
+                          child: const Text(
+                            'Ver Mais',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -79,6 +103,7 @@ class HomeSuccess extends StatelessWidget {
                               (movie) => CardMovie(
                                 movie: movie,
                                 typeSearchMovies: TypeSearchMovies.popular.name,
+                                cardReduced: true,
                               ),
                             )
                             .toList()),
@@ -109,6 +134,7 @@ class HomeSuccess extends StatelessWidget {
                               (serie) => CardSerie(
                                 serie: serie,
                                 typeSearchSeries: TypeSearchSeries.popular.name,
+                                cardReduced: true,
                               ),
                             )
                             .toList()),

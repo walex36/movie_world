@@ -38,6 +38,7 @@ class ListMoviesGenre extends StatelessWidget {
                               movie: movie,
                               typeSearchMovies: TypeSearchMovies.genre.name +
                                   genreAndMovies.keys.first.name,
+                              cardReduced: true,
                             ),
                           )
                           .toList()),

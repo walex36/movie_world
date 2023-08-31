@@ -89,7 +89,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<List<Movie>> _getMoviesPopular(int page) async {
     Either<IFailure, List<Movie>> failureOrMovieList =
-        await _getMoviesPopularUsecase(ParamsGetMoviesPopular(page: 1));
+        await _getMoviesPopularUsecase(ParamsGetMoviesPopular(page: page));
 
     return failureOrMovieList.fold(
       (failure) => throw ServerException(),
@@ -99,7 +99,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<List<Serie>> _getSeriesPopular(int page) async {
     Either<IFailure, List<Serie>> failureOrSerieList =
-        await _getSeriesPopularUsecase(ParamsGetSeriesPopular(page: 1));
+        await _getSeriesPopularUsecase(ParamsGetSeriesPopular(page: page));
 
     return failureOrSerieList.fold(
       (failure) => throw ServerException(),

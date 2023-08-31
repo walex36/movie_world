@@ -2,13 +2,11 @@ library lib_series;
 
 export 'src/domain/entities/createdby_entity.dart';
 export 'src/domain/entities/episode_entity.dart';
-export 'src/domain/entities/createdby_entity.dart';
 export 'src/domain/entities/season_entity.dart';
 export 'src/domain/entities/serie_entity.dart';
 
 export 'src/data/models/createdby_model.dart';
 export 'src/data/models/episode_model.dart';
-export 'src/data/models/createdby_model.dart';
 export 'src/data/models/season_model.dart';
 export 'src/data/models/serie_model.dart';
 

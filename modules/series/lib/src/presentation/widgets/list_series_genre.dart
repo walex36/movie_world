@@ -38,6 +38,7 @@ class ListSeriesGenre extends StatelessWidget {
                               serie: serie,
                               typeSearchSeries: TypeSearchSeries.genre.name +
                                   genreAndSeries.keys.first.name,
+                              cardReduced: true,
                             ),
                           )
                           .toList()),
