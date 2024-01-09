@@ -23,6 +23,8 @@ dependencies:
 
   movies:
     path: ../movies
+  home:
+    path: ../home
 
 dev_dependencies:
   flutter_test:

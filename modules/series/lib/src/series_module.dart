@@ -6,41 +6,26 @@ import 'presentation/pages/home_series_page.dart';
 
 class SeriesModule extends Module {
   @override
-  List<Bind<Object>> get binds => [
-        /// Bloc
-        Bind((i) => HomeSeriesBloc()),
-        Bind.factory(
-          (i) => ListSeriesBloc(
-            getSeriesPopularUsecase: i(),
-            getSeriesTrendingUsecase: i(),
-          ),
-        ),
-        Bind.singleton(
-          (i) => DetailsSeriesBloc(
-              getSeriesUsecase: i(),
-              getHashImageUsecase: i(),
-              getCreditsSeriesUsecase: i(),
-              getWatchSeriesUsecase: i(),
-              getEpisodesUsecase: i()),
-        ),
+  void binds(i) {
+    /// Bloc
+    i.addSingleton(HomeSeriesBloc.new);
+    i.add(ListSeriesBloc.new);
+    i.add(DetailsSeriesBloc.new);
 
-        /// Usecases
-        /// Repository
-        /// Datasources
-      ];
+    /// Usecases
+    /// Repository
+    /// Datasources
+  }
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (_, args) => const HomeSeriesPage(),
-        ),
-        ChildRoute(
-          '/seriesDetails',
-          child: (_, args) => DetailsSeriePage(
-            serie: args.data['serie'],
-            typeSearchSerie: args.data['typeSearchSerie'],
-          ),
-        )
-      ];
+  void routes(r) {
+    r.child(Modular.initialRoute, child: (_) => const HomeSeriesPage());
+    r.child(
+      '/seriesDetails',
+      child: (_) => DetailsSeriePage(
+        serie: r.args.data['serie'],
+        typeSearchSerie: r.args.data['typeSearchSerie'],
+      ),
+    );
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_series/lib_series.dart';
+import 'package:series/src/domain/domain.dart';
 import '../controller/list_series_controller/list_series_bloc.dart';
 import '../widgets/list_series_state/list_series_success.dart';
 

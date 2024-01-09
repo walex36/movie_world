@@ -9,7 +9,6 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
-        // etc.
       };
 }
 
@@ -24,8 +23,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movie World',
       theme: PatternTheme.theme,
-      routeInformationParser: Modular.routeInformationParser,
-      routerDelegate: Modular.routerDelegate,
+      routerConfig: Modular.routerConfig,
     );
   }
 }

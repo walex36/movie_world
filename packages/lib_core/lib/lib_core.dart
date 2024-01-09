@@ -28,7 +28,7 @@ export 'src/data/models/languages_model.dart';
 export 'src/data/models/watch_buy_model.dart';
 export 'src/data/models/watch_country_model.dart';
 
-export 'src/network/dio_config.dart';
+export 'src/network/client_http.dart';
 export 'src/network/network_info.dart';
 
 export 'src/extensions/date_extension.dart';

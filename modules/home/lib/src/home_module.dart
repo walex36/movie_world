@@ -3,6 +3,7 @@ import 'package:home/src/controller/home_bloc/home_bloc.dart';
 import 'package:home/src/pages/all_midia_page.dart';
 import 'package:home/src/pages/home_page.dart';
 import 'package:lib_blur_hash/lib_blur_hash.dart';
+import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_home/lib_home.dart';
 import 'package:lib_movies/lib_movies.dart';
@@ -12,103 +13,82 @@ import 'package:series/series.dart';
 
 class HomeModule extends Module {
   @override
-  List<Bind<Object>> get binds => [
-        /// Bloc
-        Bind((i) => HomeBloc(
-              getMoviesPopularUsecase: i(),
-              getSeriesPopularUsecase: i(),
-              getTrendingUsecase: i(),
-              getGenresMoviesUsecase: i(),
-              getMoviesByGenreUsecase: i(),
-              getGenresSeriesUsecase: i(),
-              getSeriesByGenreUsecase: i(),
-              dioConfig: i(),
-            )),
+  void binds(i) {
+    /// Bloc
+    i.add(HomeBloc.new);
+    i.add(MoviesDetailsBloc.new);
+    i.add(DetailsSeriesBloc.new);
+    i.add(AllMidiaBloc.new);
 
-        Bind.singleton(
-          (i) => MoviesDetailsBloc(
-            getMovieUsecase: i(),
-            getHashImageUsecase: i(),
-            getCreditsUsecase: i(),
-            getWatchUsecase: i(),
-          ),
-        ),
+    /// Usecases
+    ///  Home
+    i.add(GetTrendingUsecase.new);
 
-        Bind.singleton(
-          (i) => DetailsSeriesBloc(
-            getSeriesUsecase: i(),
-            getHashImageUsecase: i(),
-            getCreditsSeriesUsecase: i(),
-            getWatchSeriesUsecase: i(),
-            getEpisodesUsecase: i(),
-          ),
-        ),
+    ///  Movies
+    i.add(GetMoviesPopularUsecase.new);
+    i.add(GetMovieUsecase.new);
+    i.add(GetMovieTrendingUsecase.new);
+    i.add(GetHashImageUsecase.new);
+    i.add(GetCreditsUsecase.new);
+    i.add(GetWatchUsecase.new);
+    i.add(GetGenresMoviesUsecase.new);
+    i.add(GetMoviesByGenreUsecase.new);
 
-        Bind((i) => AllMidiaBloc()),
+    ///  Series
+    i.add(GetSeriesPopularUsecase.new);
+    i.add(GetSeriesTrendingUsecase.new);
+    i.add(GetSeriesUsecase.new);
+    i.add(GetCreditsSeriesUsecase.new);
+    i.add(GetWatchSeriesUsecase.new);
+    i.add(GetEpisodesUsecase.new);
+    i.add(GetGenresSeriesUsecase.new);
+    i.add(GetSeriesByGenreUsecase.new);
 
-        /// Usecases
-        ///  Home
-        Bind((i) => GetTrendingUsecase(repository: i())),
+    /// Repositories
+    i.add<IHomeRepository>(HomeRepository.new);
+    i.add<IMoviesRepository>(MoviesRepository.new);
+    i.add<ISeriesRepository>(SeriesRepository.new);
+    i.add<IBlurHashRepository>(BlurHashRepository.new);
 
-        ///  Movies
-        Bind((i) => GetMoviesPopularUsecase(repository: i())),
-        Bind((i) => GetMovieUsecase(repository: i())),
-        Bind((i) => GetMovieTrendingUsecase(repository: i())),
-        Bind((i) => GetHashImageUsecase(repository: i())),
-        Bind((i) => GetCreditsUsecase(repository: i())),
-        Bind((i) => GetWatchUsecase(repository: i())),
-        Bind((i) => GetGenresMoviesUsecase(repository: i())),
-        Bind((i) => GetMoviesByGenreUsecase(repository: i())),
+    /// Datasource
+    i.add<IHomeRemoteDatasource>(HomeDioDatasource.new);
+    i.add<IMoviesRemoteDatasource>(MoviesDioDatasource.new);
+    i.add<ISeriesRemoteDatasource>(SeriesDioDatasource.new);
 
-        ///  Series
-        Bind((i) => GetSeriesPopularUsecase(repository: i())),
-        Bind((i) => GetSeriesTrendingUsecase(repository: i())),
-        Bind((i) => GetSeriesUsecase(repository: i())),
-        Bind((i) => GetCreditsSeriesUsecase(repository: i())),
-        Bind((i) => GetWatchSeriesUsecase(repository: i())),
-        Bind((i) => GetEpisodesUsecase(repository: i())),
-        Bind((i) => GetGenresSeriesUsecase(repository: i())),
-        Bind((i) => GetSeriesByGenreUsecase(repository: i())),
+    /// Dio
 
-        /// Repositories
-        Bind<IHomeRepository>((i) => HomeRepository(homeRemoteDatasource: i())),
-        Bind<IMoviesRepository>(
-            (i) => MoviesRepository(moviesRemoteDatasource: i())),
-        Bind<ISeriesRepository>((i) => SeriesRepository(remoteDatasource: i())),
-        Bind<IBlurHashRepository>((i) => BlurHashRepository()),
-
-        /// Datasource
-        Bind<IHomeRemoteDatasource>((i) => HomeDioDatasource(client: i())),
-        Bind<IMoviesRemoteDatasource>((i) => MoviesDioDatasource(client: i())),
-        Bind<ISeriesRemoteDatasource>((i) => SeriesDioDatasource(client: i())),
-      ];
+    i.addSingleton<Dio>(() => ClientHttp().client);
+  }
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const HomePage(),
-        ),
-        ChildRoute(
-          '/allMedia',
-          child: (context, args) => AllMediaPage(
-            listMedia: args.data['listMedia'],
-            midiaType: args.data['midiaType'],
-          ),
-        ),
-        ChildRoute(
-          '/moviesDetails',
-          child: (context, args) => MoviesDetailsPage(
-            movie: args.data['movie'],
-            typeSearchMovies: args.data['typeSearchMovies'],
-          ),
-        ),
-        ChildRoute(
-          '/seriesDetails',
-          child: (context, args) => DetailsSeriePage(
-            serie: args.data['serie'],
-            typeSearchSerie: args.data['typeSearchSerie'],
-          ),
-        ),
-      ];
+  void exportedBinds(Injector i) {
+    i.addSingleton<Dio>(() => ClientHttp().client);
+  }
+
+  @override
+  void routes(r) {
+    r.child(Modular.initialRoute, child: (_) => const HomePage());
+    r.child(
+      '/allMedia',
+      child: (_) => AllMediaPage(
+        listMedia: r.args.data['listMedia'],
+        midiaType: r.args.data['midiaType'],
+      ),
+    );
+
+    r.child(
+      '/moviesDetails',
+      child: (_) => MoviesDetailsPage(
+        movie: r.args.data['movie'],
+        typeSearchMovies: r.args.data['typeSearchMovies'],
+      ),
+    );
+    r.child(
+      '/seriesDetails',
+      child: (_) => DetailsSeriePage(
+        serie: r.args.data['serie'],
+        typeSearchSerie: r.args.data['typeSearchSerie'],
+      ),
+    );
+  }
 }

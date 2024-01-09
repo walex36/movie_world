@@ -19,6 +19,9 @@ dependencies:
   lib_blur_hash:
     path: ../../packages/lib_blur_hash
 
+  home:
+    path: ../home
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,6 +1,5 @@
 part of 'details_series_bloc.dart';
 
-@immutable
 abstract class DetailsSeriesEvent extends Equatable {}
 
 class DetailsSeriesInitial extends DetailsSeriesEvent {

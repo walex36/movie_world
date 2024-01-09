@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lib_series/lib_series.dart';
 import 'package:series/series.dart';
+import 'package:series/src/domain/domain.dart';
 
 class ListSeriesSuccess extends StatelessWidget {
   final String titleList;

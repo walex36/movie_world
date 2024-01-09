@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_series/lib_series.dart';
-// ignore: depend_on_referenced_packages
-import 'package:meta/meta.dart';
+import 'package:series/src/domain/domain.dart';
 
 part 'list_series_event.dart';
 part 'list_series_state.dart';

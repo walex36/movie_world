@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_series/lib_series.dart';
 import 'package:series/series.dart';
+import 'package:series/src/domain/domain.dart';
 import '../widgets/details_series_state/details_series_success.dart';
 
 class DetailsSeriePage extends StatefulWidget {

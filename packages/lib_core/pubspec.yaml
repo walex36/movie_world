@@ -12,8 +12,6 @@ dependencies:
     sdk: flutter
   lib_dependencies:
     path: ../lib_dependencies
-  lib_endpoint:
-    path: ../lib_endpoint
 
 dev_dependencies:
   flutter_test:

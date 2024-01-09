@@ -2,7 +2,6 @@ library lib_dependencies;
 
 /// [NETWORK]
 export 'package:dio/dio.dart';
-export 'package:connectivity_plus/connectivity_plus.dart';
 
 /// [INJECTION]
 export 'package:flutter_modular/flutter_modular.dart';

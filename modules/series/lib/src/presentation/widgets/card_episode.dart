@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_series/lib_series.dart';
+import 'package:series/src/domain/domain.dart';
 
 class CardEpisode extends StatefulWidget {
   final Episode episode;

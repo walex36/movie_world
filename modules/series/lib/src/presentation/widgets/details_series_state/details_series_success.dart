@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:movies/movies.dart';
-import 'package:lib_series/lib_series.dart';
 import 'package:series/series.dart';
+import 'package:series/src/domain/domain.dart';
 import '../card_episode.dart';
 
 class DetailsSeriesSuccess extends StatefulWidget {
@@ -381,10 +381,10 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                   SizedBox(
                     height: 235,
                     child: state.status.isLoading
-                        ? Column(
+                        ? const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               CircularProgressIndicator(
                                 color: Colors.white,
                               ),

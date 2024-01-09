@@ -16,8 +16,6 @@ dependencies:
     path: packages/lib_core
   lib_dependencies:
     path: packages/lib_dependencies
-  lib_endpoint:
-    path: packages/lib_endpoint
   lib_home:
     path: packages/lib_home
   lib_movies:
