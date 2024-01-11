@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lib_movies/lib_movies.dart';
+import 'package:movies/src/domain/domain.dart';
 import 'package:movies/src/presentation/widgets/card_movie.dart';
 
 class ListMoviesSuccess extends StatelessWidget {

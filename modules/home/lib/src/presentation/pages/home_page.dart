@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home/src/controller/home_bloc/home_bloc.dart';
-import 'package:home/src/widgets/home_state/home_success.dart';
+import 'package:home/src/presentation/controller/home_bloc/home_bloc.dart';
+import 'package:home/src/presentation/widgets/home_state/home_success.dart';
+
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 
@@ -17,8 +18,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
     bloc.add(HomeInit());
+    super.initState();
   }
 
   @override

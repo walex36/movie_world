@@ -4,7 +4,7 @@ version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,8 +14,6 @@ dependencies:
     path: ../../packages/lib_core
   lib_dependencies:
     path: ../../packages/lib_dependencies
-  lib_movies:
-    path: ../../packages/lib_movies
   lib_blur_hash:
     path: ../../packages/lib_blur_hash
 

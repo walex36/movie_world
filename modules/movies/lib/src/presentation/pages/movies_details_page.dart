@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/lib_movies.dart';
+import 'package:movies/src/domain/domain.dart';
 import 'package:movies/src/presentation/controller/movies_details_controller/movies_details_bloc.dart';
 import 'package:movies/src/presentation/widgets/movies_details_state/movies_details_success.dart';
 

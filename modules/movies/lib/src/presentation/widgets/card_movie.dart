@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/lib_movies.dart';
 import 'package:lib_core/lib_core.dart';
+import 'package:lib_dependencies/lib_dependencies.dart';
+import 'package:movies/src/domain/domain.dart';
 
 class CardMovie extends StatefulWidget {
   final Movie movie;

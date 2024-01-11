@@ -1,7 +1,6 @@
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/src/data/datasources/i_movies_remote_datasource.dart';
-import 'package:lib_movies/src/data/models/movie_model.dart';
+import 'package:movies/src/data/data.dart';
 
 class MoviesDioDatasource implements IMoviesRemoteDatasource {
   final Dio _client;

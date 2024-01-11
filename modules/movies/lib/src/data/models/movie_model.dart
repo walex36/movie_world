@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:lib_core/lib_core.dart';
-import 'package:lib_movies/lib_movies.dart';
+import 'package:movies/src/data/data.dart';
+import 'package:movies/src/domain/domain.dart';
 
 class MovieModel extends Movie {
   MovieModel({

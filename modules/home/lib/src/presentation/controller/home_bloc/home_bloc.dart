@@ -1,10 +1,8 @@
+import 'package:home/src/domain/domain.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_home/lib_home.dart';
-import 'package:lib_movies/lib_movies.dart';
-import 'package:lib_series/lib_series.dart';
-// ignore: depend_on_referenced_packages
-import 'package:meta/meta.dart';
+import 'package:movies/movies.dart';
+import 'package:series/series.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -17,7 +15,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetMoviesByGenreUsecase _getMoviesByGenreUsecase;
   final GetGenresSeriesUsecase _getGenresSeriesUsecase;
   final GetSeriesByGenreUsecase _getSeriesByGenreUsecase;
-  final ClientHttp _clientHttp;
   HomeBloc({
     required GetMoviesPopularUsecase getMoviesPopularUsecase,
     required GetSeriesPopularUsecase getSeriesPopularUsecase,
@@ -26,7 +23,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required GetMoviesByGenreUsecase getMoviesByGenreUsecase,
     required GetGenresSeriesUsecase getGenresSeriesUsecase,
     required GetSeriesByGenreUsecase getSeriesByGenreUsecase,
-    required ClientHttp clientHttp,
   })  : _getMoviesPopularUsecase = getMoviesPopularUsecase,
         _getSeriesPopularUsecase = getSeriesPopularUsecase,
         _getTrendingUsecase = getTrendingUsecase,
@@ -34,7 +30,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         _getMoviesByGenreUsecase = getMoviesByGenreUsecase,
         _getGenresSeriesUsecase = getGenresSeriesUsecase,
         _getSeriesByGenreUsecase = getSeriesByGenreUsecase,
-        _clientHttp = clientHttp,
         super(const HomeState(
           status: ControlStatus.initial,
           moviesPopular: [],
@@ -46,13 +41,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeInit>(_onHomeInit);
   }
 
-  void _onHomeInit(HomeInit event, Emitter<HomeState> emit) async {
+  Future<void> _onHomeInit(HomeInit event, Emitter<HomeState> emit) async {
     try {
       emit(state.copyWith(status: ControlStatus.loading));
-      _clientHttp.init();
 
-      List<Map<String, dynamic>> moviesAndSeriesTrending =
-          await _getTrending(1);
+      (
+        List<Serie> moviesAndSeriesTrending,
+        List<Movie> moviesPopular
+      ) moviesAndSeriesTrending = await _getTrending(1);
 
       List<Movie> listMovies = await _getMoviesPopular(1);
 
@@ -62,9 +58,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       List<Map<Genre, List<Serie>>> seriesByGenre = await _getSeriesGenre();
 
+      List<dynamic> listMovieSerie = [
+        ...moviesAndSeriesTrending.$1,
+        ...moviesAndSeriesTrending.$2
+      ];
+
       emit(state.copyWith(
         status: ControlStatus.success,
-        moviesAndSeriesTrending: moviesAndSeriesTrending,
+        moviesAndSeriesTrending: listMovieSerie,
         moviesPopular: listMovies,
         seriesPopular: listSeries,
         moviesByGenre: moviesByGenre,
@@ -77,8 +78,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  Future<List<Map<String, dynamic>>> _getTrending(int page) async {
-    Either<IFailure, List<Map<String, dynamic>>> failureOrTrending =
+  Future<(List<Serie>, List<Movie>)> _getTrending(int page) async {
+    Either<IFailure, (List<Serie>, List<Movie>)> failureOrTrending =
         await _getTrendingUsecase(ParamsGetTrending(page: page));
 
     return failureOrTrending.fold(

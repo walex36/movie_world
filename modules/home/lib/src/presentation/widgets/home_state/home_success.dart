@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home/src/controller/home_bloc/home_bloc.dart';
+import 'package:home/src/presentation/controller/home_bloc/home_bloc.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/lib_movies.dart';
-import 'package:lib_series/lib_series.dart';
 import 'package:movies/movies.dart';
 import 'package:series/series.dart';
 
@@ -38,20 +36,20 @@ class HomeSuccess extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         children: state.moviesAndSeriesTrending.map((item) {
-                          if (item['media_type'] == 'tv') {
-                            Serie serie = SerieModel.fromMap(item).toEntity();
+                          if (item is Serie) {
                             return CardSerie(
-                              serie: serie,
+                              serie: item,
                               typeSearchSeries: TypeSearchSeries.trending.name,
                               cardReduced: true,
                             );
-                          } else {
-                            Movie movie = MovieModel.fromMap(item).toEntity();
+                          } else if (item is Movie) {
                             return CardMovie(
-                              movie: movie,
+                              movie: item,
                               typeSearchMovies: TypeSearchMovies.trending.name,
                               cardReduced: true,
                             );
+                          } else {
+                            return Container();
                           }
                         }).toList()),
                   )

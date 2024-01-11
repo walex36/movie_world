@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lib_core/lib_core.dart';
-import 'package:lib_movies/lib_movies.dart';
 import 'package:movies/movies.dart';
 
 class ListMoviesGenre extends StatelessWidget {

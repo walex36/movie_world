@@ -1,11 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'home_bloc.dart';
 
 class HomeState extends Equatable {
   final ControlStatus status;
   final List<Movie> moviesPopular;
   final List<Serie> seriesPopular;
-  final List<Map<String, dynamic>> moviesAndSeriesTrending;
+  final List<dynamic> moviesAndSeriesTrending;
   final List<Map<Genre, List<Movie>>> moviesByGenre;
   final List<Map<Genre, List<Serie>>> seriesByGenre;
 
@@ -32,7 +31,7 @@ class HomeState extends Equatable {
     ControlStatus? status,
     List<Movie>? moviesPopular,
     List<Serie>? seriesPopular,
-    List<Map<String, dynamic>>? moviesAndSeriesTrending,
+    List<dynamic>? moviesAndSeriesTrending,
     List<Map<Genre, List<Movie>>>? moviesByGenre,
     List<Map<Genre, List<Serie>>>? seriesByGenre,
   }) {

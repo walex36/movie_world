@@ -1,7 +1,7 @@
 import 'package:home/home.dart';
 import 'package:lib_blur_hash/lib_blur_hash.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/lib_movies.dart';
+import 'package:movies/src/domain/domain.dart';
 import 'package:movies/src/presentation/controller/home_movies_controller/home_movies_bloc.dart';
 import 'package:movies/src/presentation/controller/list_movies_controller/list_movies_bloc.dart';
 import 'package:movies/src/presentation/controller/movies_details_controller/movies_details_bloc.dart';

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home/src/controller/home_bloc/home_bloc.dart';
+import 'package:home/src/presentation/controller/home_bloc/home_bloc.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_movies/lib_movies.dart';
-import 'package:lib_series/lib_series.dart';
 import 'package:movies/movies.dart';
 import 'package:series/series.dart';
 

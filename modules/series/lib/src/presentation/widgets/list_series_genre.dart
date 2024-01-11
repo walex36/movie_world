@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lib_core/lib_core.dart';
-import 'package:series/src/domain/domain.dart';
 import 'package:series/series.dart';
 
 class ListSeriesGenre extends StatelessWidget {

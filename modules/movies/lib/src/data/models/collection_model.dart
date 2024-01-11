@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:lib_movies/lib_movies.dart';
+import 'package:movies/src/domain/domain.dart';
 
 class CollectionModel extends Collection {
   const CollectionModel({
@@ -50,11 +48,6 @@ class CollectionModel extends Collection {
       backdropPath: collection.backdropPath,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory CollectionModel.fromJson(String source) =>
-      CollectionModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

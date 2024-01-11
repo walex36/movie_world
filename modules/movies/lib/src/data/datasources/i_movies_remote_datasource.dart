@@ -1,5 +1,5 @@
 import 'package:lib_core/lib_core.dart';
-import 'package:lib_movies/src/data/models/movie_model.dart';
+import 'package:movies/src/data/data.dart';
 
 abstract class IMoviesRemoteDatasource {
   Future<List<MovieModel>> getMoviesPopular({

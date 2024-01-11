@@ -1,6 +1,5 @@
 part of 'movies_details_bloc.dart';
 
-@immutable
 abstract class MoviesDetailsEvent extends Equatable {}
 
 class InitMoviesDetails extends MoviesDetailsEvent {

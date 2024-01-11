@@ -10,3 +10,6 @@ export 'src/presentation/widgets/card_actor.dart';
 export 'src/presentation/widgets/list_where_watch.dart';
 export 'src/presentation/widgets/card_movie.dart';
 export 'src/presentation/widgets/list_movies_genre.dart';
+
+export 'src/domain/domain.dart';
+export 'src/data/data.dart';

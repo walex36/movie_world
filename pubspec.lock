@@ -287,27 +287,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  lib_home:
-    dependency: "direct main"
-    description:
-      path: "packages/lib_home"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lib_movies:
-    dependency: "direct main"
-    description:
-      path: "packages/lib_movies"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lib_series:
-    dependency: "direct main"
-    description:
-      path: "packages/lib_series"
-      relative: true
-    source: path
-    version: "0.0.1"
   lints:
     dependency: transitive
     description:

@@ -1,13 +1,12 @@
-import 'package:home/src/controller/all_midia_bloc/all_midia_bloc.dart';
-import 'package:home/src/controller/home_bloc/home_bloc.dart';
-import 'package:home/src/pages/all_midia_page.dart';
-import 'package:home/src/pages/home_page.dart';
+import 'package:home/src/data/data.dart';
+import 'package:home/src/domain/domain.dart';
+import 'package:home/src/presentation/controller/all_midia_bloc/all_midia_bloc.dart';
+import 'package:home/src/presentation/controller/home_bloc/home_bloc.dart';
+import 'package:home/src/presentation/pages/all_midia_page.dart';
+import 'package:home/src/presentation/pages/home_page.dart';
 import 'package:lib_blur_hash/lib_blur_hash.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
-import 'package:lib_home/lib_home.dart';
-import 'package:lib_movies/lib_movies.dart';
-import 'package:lib_series/lib_series.dart';
 import 'package:movies/movies.dart';
 import 'package:series/series.dart';
 
@@ -15,10 +14,10 @@ class HomeModule extends Module {
   @override
   void binds(i) {
     /// Bloc
-    i.add(HomeBloc.new);
-    i.add(MoviesDetailsBloc.new);
-    i.add(DetailsSeriesBloc.new);
-    i.add(AllMidiaBloc.new);
+    i.addSingleton(HomeBloc.new);
+    i.addSingleton(MoviesDetailsBloc.new);
+    i.addSingleton(DetailsSeriesBloc.new);
+    i.addSingleton(AllMidiaBloc.new);
 
     /// Usecases
     ///  Home
@@ -75,7 +74,6 @@ class HomeModule extends Module {
         midiaType: r.args.data['midiaType'],
       ),
     );
-
     r.child(
       '/moviesDetails',
       child: (_) => MoviesDetailsPage(

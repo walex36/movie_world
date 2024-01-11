@@ -1,8 +1,6 @@
-import 'package:lib_movies/lib_movies.dart';
-// ignore: depend_on_referenced_packages
-import 'package:meta/meta.dart';
 import 'package:lib_core/lib_core.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
+import 'package:movies/src/domain/domain.dart';
 
 part 'home_movies_event.dart';
 part 'home_movies_state.dart';
