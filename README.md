@@ -7,7 +7,7 @@ Este projeto tem como objetivo o estudo de consumo de api externas 'The movie da
 
 - Lista de filmes e séries populares, Trending e por gêneros.
 - Pagina com as informações principais
-  - Onde Assisiter (Mostra os países disponíveis e em quais plataformas)
+  - Onde Assistir (Mostra os países disponíveis e em quais plataformas)
   - Imagem principal
   - Gêneros
   - Produtoras
