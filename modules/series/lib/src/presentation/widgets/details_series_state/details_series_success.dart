@@ -7,9 +7,11 @@ import '../card_episode.dart';
 
 class DetailsSeriesSuccess extends StatefulWidget {
   final Serie serieCache;
+  final bool isBlur;
   const DetailsSeriesSuccess({
     super.key,
     required this.serieCache,
+    required this.isBlur,
   });
 
   @override
@@ -27,21 +29,25 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return BlocBuilder<DetailsSeriesBloc, DetailsSeriesState>(
       bloc: bloc,
       builder: (context, state) {
         return Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: AnimatedOpacity(
-                opacity: state.blurImage != 'L02Fc7j[fQj[j[fQfQfQfQfQfQfQ'
-                    ? 1.0
-                    : 0.0,
-                duration: const Duration(milliseconds: 1000),
-                child: BlurHash(
-                  hash: state.blurImage,
-                  imageFit: BoxFit.fill,
+            AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: state.blurImage.isNotEmpty ? 1 : 0,
+              child: Visibility(
+                visible: widget.isBlur,
+                child: SizedBox(
+                  height: size.height,
+                  width: size.width,
+                  child: BlurHash(
+                    hash: state.blurImage,
+                    imageFit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -145,11 +151,22 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                                   color: Colors.amber.shade600,
                                 ),
                                 Text(
-                                    state.serie.voteAverage.toStringAsFixed(1)),
+                                  state.serie.voteAverage.toStringAsFixed(1),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text(state.serie.lastAirDate.dayMonthYear()),
+                                Text(
+                                  state.serie.lastAirDate.dayMonthYear(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ],
                             ),
                             Wrap(
@@ -242,7 +259,7 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                     height: 10,
                   ),
                   const Text(
-                    'Produzido por:',
+                    'Produzido por',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -299,7 +316,7 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Sinopse:',
+                        'Sinopse',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -318,7 +335,7 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                     ],
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Visibility(
                     visible: state.serie.seasons.isNotEmpty &&
@@ -359,10 +376,6 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                                   );
                                   if (state.status.isSuccess) {
                                     setState(() {
-                                      // episodesScrollController.animateTo(
-                                      //     0,
-                                      //     duration: Duration(seconds: 1),
-                                      //     curve: Curves.bounceIn);
                                       episodesScrollController.jumpTo(0);
                                     });
                                   }
@@ -378,9 +391,10 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                     height: 5,
                   ),
                   SizedBox(
-                    height: 235,
+                    height: 200,
                     child: state.status.isLoading
                         ? const Column(
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -389,14 +403,15 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                               ),
                             ],
                           )
-                        : ListView.builder(
+                        : ListView(
                             controller: episodesScrollController,
                             scrollDirection: Axis.horizontal,
-                            itemCount: state.episodeSeasonSelect.length,
-                            itemBuilder: (context, index) => CardEpisode(
-                              episode: state.episodeSeasonSelect[index],
-                              posterSerie: state.serie.posterPath,
-                            ),
+                            children: state.episodeSeasonSelect
+                                .map((ep) => CardEpisode(
+                                      episode: ep,
+                                      posterSerie: state.serie.posterPath,
+                                    ))
+                                .toList(),
                           ),
                   ),
 
@@ -411,12 +426,15 @@ class _DetailsSeriesSuccessState extends State<DetailsSeriesSuccess> {
                     height: 10,
                   ),
                   const Text(
-                    'Atores:',
+                    'Atores',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   SizedBox(
                     height: 300,

@@ -51,7 +51,7 @@ class MoviesDetailsBloc extends Bloc<MoviesDetailsEvent, MoviesDetailsState> {
             voteCount: 0,
           ),
           typeSearchMovies: 'popular',
-          blurImage: 'L02Fc7j[fQj[j[fQfQfQfQfQfQfQ',
+          blurImage: '',
           status: ControlStatus.initial,
           credits: const [],
           watchCountry: const [],

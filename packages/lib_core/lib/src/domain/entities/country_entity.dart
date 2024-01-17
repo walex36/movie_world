@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:lib_core/src/const/country_iso.dart';
 import 'package:lib_dependencies/lib_dependencies.dart';
 
 class Country extends Equatable {
@@ -8,6 +8,17 @@ class Country extends Equatable {
     required this.iso31661,
     required this.name,
   });
+
+  String get nativeName {
+    final itens =
+        countryIso.where((element) => element['iso_3166_1'] == name).toList();
+
+    if (itens.isEmpty) {
+      return name;
+    }
+
+    return itens.first['native_name'] ?? name;
+  }
 
   Country copyWith({
     String? iso31661,

@@ -28,36 +28,43 @@ class _CardEpisodeState extends State<CardEpisode> {
       // ),
       child: Padding(
         padding: const EdgeInsets.only(right: 5),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 150,
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: widget.episode.stillPath.isEmpty
-                    ? widget.posterSerie
-                    : widget.episode.stillPath,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    CircularProgressIndicator(
-                  value: downloadProgress.progress,
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 250),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 150,
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: widget.episode.stillPath.isEmpty
+                      ? widget.posterSerie
+                      : widget.episode.stillPath,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      CircularProgressIndicator(
+                    value: downloadProgress.progress,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Column(
-              children: [
-                Text(
-                  widget.episode.name,
-                  textAlign: TextAlign.center,
-                  maxLines: 3,
-                  overflow: TextOverflow.fade,
-                ),
-              ],
-            )
-          ],
+              const SizedBox(
+                height: 5,
+              ),
+              Column(
+                children: [
+                  Text(
+                    widget.episode.name,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.fade,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -20,6 +20,7 @@ class DetailsSeriePage extends StatefulWidget {
 
 class _DetailsSeriePageState extends State<DetailsSeriePage> {
   final DetailsSeriesBloc bloc = Modular.get();
+  bool isBackgroudBlur = true;
 
   @override
   void initState() {
@@ -50,6 +51,18 @@ class _DetailsSeriePageState extends State<DetailsSeriePage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         toolbarHeight: 71,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isBackgroudBlur = !isBackgroudBlur;
+              });
+            },
+            icon: Icon(
+              isBackgroudBlur ? Icons.blur_off : Icons.blur_on,
+            ),
+          )
+        ],
       ),
       body: BlocBuilder<DetailsSeriesBloc, DetailsSeriesState>(
         bloc: bloc,
@@ -61,6 +74,7 @@ class _DetailsSeriePageState extends State<DetailsSeriePage> {
             case ControlStatus.success:
               return DetailsSeriesSuccess(
                 serieCache: widget.serie,
+                isBlur: isBackgroudBlur,
               );
             case ControlStatus.failure:
             default:

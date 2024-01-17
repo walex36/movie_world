@@ -21,6 +21,7 @@ class MoviesDetailsPage extends StatefulWidget {
 
 class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
   final MoviesDetailsBloc bloc = Modular.get();
+  bool isBackgroudBlur = true;
 
   @override
   void initState() {
@@ -51,6 +52,18 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         toolbarHeight: 71,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isBackgroudBlur = !isBackgroudBlur;
+              });
+            },
+            icon: Icon(
+              isBackgroudBlur ? Icons.blur_off : Icons.blur_on,
+            ),
+          )
+        ],
       ),
       body: BlocBuilder<MoviesDetailsBloc, MoviesDetailsState>(
         bloc: bloc,
@@ -62,6 +75,7 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
             case ControlStatus.success:
               return MoviesDetailsSuccess(
                 movieCache: widget.movie,
+                isBlur: isBackgroudBlur,
               );
             case ControlStatus.failure:
             default:

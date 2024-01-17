@@ -77,6 +77,7 @@ class HomeSuccess extends StatelessWidget {
                             arguments: {
                               'listMedia': state.moviesPopular,
                               'midiaType': 'movie',
+                              'titlePage': 'Filmes Populares',
                             },
                           ),
                           child: const Text(

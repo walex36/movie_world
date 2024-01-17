@@ -8,9 +8,11 @@ import '../../controller/movies_details_controller/movies_details_bloc.dart';
 
 class MoviesDetailsSuccess extends StatefulWidget {
   final Movie movieCache;
+  final bool isBlur;
   const MoviesDetailsSuccess({
     super.key,
     required this.movieCache,
+    required this.isBlur,
   });
 
   @override
@@ -27,21 +29,25 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return BlocBuilder<MoviesDetailsBloc, MoviesDetailsState>(
       bloc: bloc,
       builder: (context, state) {
         return Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: AnimatedOpacity(
-                opacity: state.blurImage != 'L02Fc7j[fQj[j[fQfQfQfQfQfQfQ'
-                    ? 1.0
-                    : 0.0,
-                duration: const Duration(milliseconds: 1000),
-                child: BlurHash(
-                  hash: state.blurImage,
-                  imageFit: BoxFit.fill,
+            AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: state.blurImage.isNotEmpty ? 1 : 0,
+              child: Visibility(
+                visible: widget.isBlur,
+                child: SizedBox(
+                  height: size.height,
+                  width: size.width,
+                  child: BlurHash(
+                    hash: state.blurImage,
+                    imageFit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -140,16 +146,22 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.amber.shade600,
-                                ),
+                                Icon(Icons.star, color: Colors.amber.shade600),
                                 Text(
-                                    state.movie.voteAverage.toStringAsFixed(1)),
-                                const SizedBox(
-                                  width: 10,
+                                  state.movie.voteAverage.toStringAsFixed(1),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                                Text(state.movie.releaseDate.dayMonthYear()),
+                                const SizedBox(width: 10),
+                                Text(
+                                  state.movie.releaseDate.dayMonthYear(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ],
                             ),
                             Wrap(
@@ -202,14 +214,15 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                                   'Orçamento',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w800,
                                     fontSize: 14,
                                   ),
                                 ),
                                 Text(
                                   'R\$ ${state.movie.budget.moneyFormat()}',
                                   style: const TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ],
@@ -222,7 +235,7 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                                   'Tempo',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w800,
                                     fontSize: 14,
                                   ),
                                 ),
@@ -230,7 +243,8 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                                   Duration(seconds: state.movie.runtime)
                                       .secondsToHour(),
                                   style: const TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ],
@@ -242,7 +256,7 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                     height: 10,
                   ),
                   const Text(
-                    'Produzido por:',
+                    'Produzido por',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -299,7 +313,7 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Sinopse:',
+                        'Sinopse',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -331,12 +345,15 @@ class _MoviesDetailsSuccessState extends State<MoviesDetailsSuccess> {
                     height: 10,
                   ),
                   const Text(
-                    'Atores:',
+                    'Atores',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   SizedBox(
                     height: 300,

@@ -9,10 +9,12 @@ import 'package:lib_dependencies/lib_dependencies.dart';
 class AllMediaPage extends StatefulWidget {
   final List<dynamic> listMedia;
   final String midiaType;
+  final String titlePage;
   const AllMediaPage({
     super.key,
     required this.listMedia,
     required this.midiaType,
+    required this.titlePage,
   });
 
   @override
@@ -42,7 +44,7 @@ class _AllMediaPageState extends State<AllMediaPage> {
           statusBarIconBrightness: Brightness.light,
         ),
         title: Text(
-          'Movie World',
+          widget.titlePage,
           style: TextStyle(
             color: theme.colorScheme.onPrimary,
             fontSize: 18,

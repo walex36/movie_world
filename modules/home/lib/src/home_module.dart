@@ -72,6 +72,7 @@ class HomeModule extends Module {
       child: (_) => AllMediaPage(
         listMedia: r.args.data['listMedia'],
         midiaType: r.args.data['midiaType'],
+        titlePage: r.args.data['titlePage'],
       ),
     );
     r.child(

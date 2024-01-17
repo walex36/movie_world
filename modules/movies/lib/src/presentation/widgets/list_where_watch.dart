@@ -29,26 +29,41 @@ class _ListWhereWatchState extends State<ListWhereWatch> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Onde assistir',
-                style: TextStyle(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Onde assistir',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            DropdownButtonHideUnderline(
+              child: DropdownButton<WatchCountry>(
+                value: watchSelect,
+                alignment: Alignment.centerRight,
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
                 ),
-              ),
-              DropdownButton<WatchCountry>(
-                value: watchSelect,
                 items: listWatch
                     .map<DropdownMenuItem<WatchCountry>>(
                       (watch) => DropdownMenuItem(
                         value: watch,
-                        child: Text(watch.country.name),
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            maxWidth: 200,
+                            minWidth: 100,
+                          ),
+                          child: Text(
+                            watch.country.nativeName,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            softWrap: true,
+                          ),
+                        ),
                       ),
                     )
                     .toList(),
@@ -58,8 +73,8 @@ class _ListWhereWatchState extends State<ListWhereWatch> {
                   });
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,

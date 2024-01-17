@@ -141,26 +141,65 @@ class _CardMovieState extends State<CardMovie> {
                 child: SizedBox(
                   height: 200,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.movie.title, textAlign: TextAlign.center),
+                      Text(
+                        widget.movie.title,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(
                             Icons.star,
                             color: Colors.amber.shade600,
                           ),
-                          Text(widget.movie.voteAverage.toStringAsFixed(1)),
+                          Text(
+                            widget.movie.voteAverage.toStringAsFixed(1),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
-                          Text(widget.movie.releaseDate.dayMonthYear()),
+                          Text(
+                            widget.movie.releaseDate.dayMonthYear(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
+                      ),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        children: widget.movie.genres
+                            .map((genre) => Card(
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(
+                                      genre.name,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
                       ),
                     ],
                   ),
