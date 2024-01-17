@@ -1,7 +1,7 @@
 
 ## Movie World
 
-Este projeto tem como objetivo o estudo de consumo de api externas 'The movie database'.
+Este projeto tem como objetivo o estudo de consumo da api 'The movie database' e estimular a criatividade para o design da ui.
 
 ## Funcionalidades
 
